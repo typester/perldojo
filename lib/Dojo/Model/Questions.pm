@@ -84,4 +84,11 @@ sub get {
     );
 }
 
+sub random_next {
+    my ($self) = @_;
+
+    my @keys = keys %{ $self->data };
+    $keys[ int rand scalar @keys ];
+}
+
 __PACKAGE__->meta->make_immutable;

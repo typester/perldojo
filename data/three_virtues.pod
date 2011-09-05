@@ -10,19 +10,19 @@ Perlの父、Larry Wallが定義するプログラマーの三大美徳にあて
 
 =item 1.
 
- 怠惰
+怠惰
 
 =item 2.
 
- 傲慢
+傲慢
 
 =item 3.
 
- 短気
+短気
 
 =item 4.
 
- 臆病
+臆病
 
 =back
 

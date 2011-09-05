@@ -1,0 +1,11 @@
+.container h1 {
+    padding-top: 1em;
+}
+
+.container .inputs-list li {
+    margin-bottom: 0.6em;
+}
+
+.container form button {
+    margin-top: 1em;
+}
