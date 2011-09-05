@@ -1,0 +1,44 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+Perl文法のモットーを答えなさい。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+DRY
+
+=item 2.
+
+WYSIWYG
+
+=item 3.
+
+TMTOWTDI
+
+=item 4.
+
+実行可能な回線ノイズ
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+TMTOWTDI:There's More Than One Way To Do Itが正解です。
+
+DRY: Dont repeat yourselfはコーディングの指針です。
+WYSIWYG: What You See Is What You Getはディスプレイに表示されるものと印刷される物が一致するように表現する技術です。
+実行可能な回線ノイズ：よくPerlのコードはそう揶揄されますが、モットーではありません。。結果的にそうなってしまうだけです。
+
+=head1 AUTHOR
+
+eba**a123
+http://minna.cert.yahoo.co.jp/cbrws/

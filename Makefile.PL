@@ -10,12 +10,9 @@ requires 'Try::Tiny';
 
 requires 'Ark' => '0.2';
 
-
+requires 'Pod::HTMLEmbed' => '0.04';
 
 test_requires 'Test::More' => '0.88';
-tests 't/*.t';
-author_tests 'xt';
-
-auto_set_repository;
+tests 't/*.t, t/*/*.t';
 
 WriteAll;

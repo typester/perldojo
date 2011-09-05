@@ -1,0 +1,43 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+test bar question
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+foo
+
+=item 2.
+
+bar
+
+=item 3.
+
+buzz
+
+=item 4.
+
+hoge
+
+=item 5.
+
+fuga
+
+=back
+
+=head1 ANSWER
+
+2
+
+=head1 EXPLANATION
+
+test bar explanation
+
+=head1 AUTHOR
+
+Daisuke Murase

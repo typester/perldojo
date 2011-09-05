@@ -1,0 +1,51 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+    <ul>
+      <li>foo</li>
+      <li>bar</li>
+      <li>buzz</li>
+      <li>hoge</li>
+      <li>fuga</li>
+    </ul>
+
+このような HTML 文字列を含んだ変数 C<$html> から C<< <li> >> で括られたリスト C<@lists> を生成したい。
+
+次のコードうち誤りであるものを選べ
+
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+    my @lists;
+    push @lists, $1 while $html =~ m!<li>(.*?)</li>!g;
+
+=item 2.
+
+    my @lists = $html =~ m!<li>(.*?)</li>!g;
+
+
+=item 3.
+
+    my @lists;
+    while ($html =~ m!<li>(.*?)</li>!) {
+        push @lists, $1;
+    }
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+正規表現マッチに g 修飾子をつかっていないため、この while は無限ループする。
+
+=head1 AUTHOR
+
+Daisuke Murase
