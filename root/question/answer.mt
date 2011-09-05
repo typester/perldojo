@@ -10,14 +10,19 @@
 </div>
 
 <div class="page-header">
-  <h1>Explanation</h1>
+  <h1>解説</h1>
 </div>
 
 <?= encoded_string $q->explanation ?>
 
 <div class="page-header">
-  <h1>TODO: 正答率のいけてるグラフとか</h1>
+  <h1>TODO</h1>
 </div>
+
+<ul>
+  <li>作成者の表示</li>
+  <li>結果画面に正答率、選択肢ごとの回答された割合、などを表示</li>
+</ul>
 
 <p><a class="btn primary" href="/question">Next</a></p>
 
