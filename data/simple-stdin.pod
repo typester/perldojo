@@ -1,0 +1,47 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+次の短いプログラムを実行すると何が起こるか答えなさい。
+
+    #!/usr/bin/perl
+    
+    print (<STDIN>);
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+ファイルをプログラムにリダイレクトすると、一行目が表示される。
+
+=item 2.
+
+ファイルをプログラムにリダイレクトすると、ファイルの中身すべてが表示される。
+
+=item 3.
+
+ファイル名を引数としてプログラムを起動すると、ファイルの内容が表示される。
+
+=item 4.
+
+プログラムを起動すると、実行したディレクトリのファイル名が一つ表示される。
+
+=back
+
+=head1 ANSWER
+
+2
+
+=head1 EXPLANATION
+
+STDINから受け取った内容をすべて表示します。
+()でSTDINの内容を受けているため、配列に対しての代入となり、STDINの最後まで配列に格納されます。
+そして、print文で配列すべての内容を表示しています。
+
+=head1 AUTHOR
+
+eba**a123
+http://minna.cert.yahoo.co.jp/cbrws/
+

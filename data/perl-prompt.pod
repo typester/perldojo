@@ -1,0 +1,44 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+以下のコマンドをタイプした時、どのようになるか答えなさい($はプロンプトです)
+
+    $ perl
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+ヘルプが表示される
+
+=item 2.
+
+何も実行されずに終了する
+
+=item 3.
+
+Perlプログラムを受け付ける状態になる
+
+=item 4.
+
+Can't open perl script ""とエラーが表示される。
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+Perlプログラムを受け付ける状態になります。
+プログラムを書いて最後に、^Dによって終了すると、プログラムが即座に実行されます。
+
+=head1 AUTHOR
+
+eba**a123
+http://minna.cert.yahoo.co.jp/cbrws/
+
