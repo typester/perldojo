@@ -4,26 +4,46 @@
 
 ? block content => sub {
 
-<div class="hero-unit">
-  <h1><?= $c->stash->{right} ? "正解！" : "残念!" ?></h1>
-  <p>正解は <?= encoded_string $q->answer ?> でした</p>
+<div id="examContainer">
+
+<!-- [[[ HEADER-AREA ]]] -->
+<div id="examHeader">
+<h1 class="hidden">Perl道場</h1>
+<!-- / #examHeader --></div>
+<!-- / [[[ HEADER-AREA ]]] -->
+
+<div class="examContent group">
+<div class="blockJudge">
+<p><?= $c->stash->{right} ? '<img src="/img/exam/img_correct_01.png" width="179" height="179" alt="" />' : '<img src="/img/exam/img_incorrect_01.png" width="162" height="167" alt="" />' ?></p>
+<p class="message"><?= $c->stash->{right} ? '正解！おめでとうございます！' : '残念！' ?></p>
 </div>
+<h3 class="ttlStyle2">正解は <?= encoded_string $q->answer ?> でした</h3>
+<h4 class="ttlStyle3">解説</h4>
+<p><?= encoded_string $q->explanation ?></p>
 
-<div class="page-header">
-  <h1>解説</h1>
+<div class="blockQuestionInformation">
+<div>
+<table>
+<tr>
+<th scope="row">正答率</th>
+<td><p class="percent"><img src="/img/exam/img_meter.png" height="13" /></p>30%</td>
+</tr>
+<tr>
+<th scope="row">この問題の評価</th>
+<td><img src="/img/exam/btn_plus_01.png" width="29" height="20" alt="" class="btnPlus" /><img src="/img/exam/ico_plus_01.png" width="15" height="20" alt="" /></td>
+</tr>
+</table>
+<p class="author"><img src="https://secure.gravatar.com/avatar/fbc6511bcc0649366086c0445fb456d3?s=140&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="30" height="30" alt="" /> <a href="/" target="_blank">typester</a></p>
 </div>
-
-<?= encoded_string $q->explanation ?>
-
-<div class="page-header">
-  <h1>TODO</h1>
 </div>
+<div><a href="/question" class="btnStyle1">Next</a></div>
+<!-- / .examContent --></div>
 
-<ul>
-  <li>作成者の表示</li>
-  <li>結果画面に正答率、選択肢ごとの回答された割合、などを表示</li>
-</ul>
+<!-- [[[ FOOTER-AREA ]]] -->
+<div id="footer">
+<p class="copyright vcard">Copyright &#169; <a href="http://www.kayac.com/" title="株式会社KAYAC（カヤック）古都鎌倉から新しい価値感のサービスを次々にリリースする面白法人" class="external fn org url">KAYAC Inc. </a> All Rights Reserved.</p>
+<!-- / #footer --></div>
+<!-- / [[[ FOOTER-AREA ]]] -->
 
-<p><a class="btn primary" href="/question">Next</a></p>
-
+<!-- / #examContainer --></div>
 ? };

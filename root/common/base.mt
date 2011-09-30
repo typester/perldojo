@@ -11,13 +11,11 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.2.0.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <!-- <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.2.0.min.css"> -->
+    <link rel="stylesheet" href="/css/common.css">
   </head>
 
   <body>
-    <div class="container">
 ? block content => sub {}
-    </div><!-- /container -->
   </body>
 </html>
