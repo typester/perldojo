@@ -5,17 +5,10 @@ use FindBin;
 
 use Test::More;
 use Test::TCP;
+use t::Utils;
 
-my $bin = $ENV{MEMCACHED} || "memcached";
-my $memcached = Test::TCP->new(
-    code => sub {
-        my $port = shift;
-        exec $bin, '-p' => $port;
-        die "cannot execute $bin: $!";
-    },
-);
+my $memcached = setup_memcached;
 my $port = $memcached->port;
-note "memcached port $port";
 
 use_ok 'Dojo::Model::Storage';
 use_ok 'Cache::Memcached::Fast';

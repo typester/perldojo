@@ -13,6 +13,8 @@ requires 'Ark' => '0.2';
 requires 'Pod::HTMLEmbed' => '0.04';
 
 test_requires 'Test::More' => '0.88';
-tests 't/*.t, t/*/*.t';
+test_requires 'Test::TCP';
+
+tests 't/*.t t/*/*.t';
 
 WriteAll;
