@@ -14,13 +14,16 @@ sub set_result {
     my ($self, $key, $correct) = @_;
 
     my $backend = $self->backend;
-    $backend->incr("answered_${key}", 1)
-        or $backend->set("answered_${key}", 1);
+    my $answered = $backend->incr("answered_${key}", 1)
+                   || $backend->set("answered_${key}", 1);
 
-    if ($correct) {
-        $backend->incr("corrected_${key}")
-            or $backend->set("corrected_${key}", 1);
-    }
+    my $corrected = $correct ? $backend->incr("corrected_${key}")
+                               || $backend->set("corrected_${key}", 1)
+                             : $backend->get("corrected_${key}");
+    return {
+        answered  => $answered  || 0,
+        corrected => $corrected || 0,
+    };
 }
 
 sub get_result {

@@ -35,11 +35,25 @@
         <table>
           <tr>
             <th scope="row">正答率</th>
-            <td><p class="percent"><img src="/img/exam/img_meter.png" height="13" /></p>30%</td>
+            <td>
+? if ($c->stash->{percentage}) {
+              <p class="percent"><img src="/img/exam/img_meter.png" height="13" width="<?= int($c->stash->{percentage}) * 2 ?>" /></p><?= $c->stash->{percentage} ?>％
+? } else {
+              <p class="percent"></p> - ％
+? }
+            </td>
           </tr>
           <tr>
             <th scope="row">この問題の評価</th>
-            <td><img src="/img/exam/btn_plus_01.png" width="29" height="20" alt="" class="btnPlus" /><img src="/img/exam/ico_plus_01.png" width="15" height="20" alt="" /></td>
+            <td>
+              <img src="/img/exam/btn_plus_01.png" width="29" height="20" alt="" class="btnPlus">
+              <span id="stars">
+? for my $i ( 1 .. $c->stash->{star} ) {
+                <img src="/img/exam/ico_plus_01.png">
+? }
+                <span id="added-stars"></span>
+              </span>
+            </td>
           </tr>
         </table>
         <p class="author"><img src="https://secure.gravatar.com/avatar/fbc6511bcc0649366086c0445fb456d3?s=140&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="30" height="30" alt="" /><?= $q->author ?></p>
@@ -55,4 +69,16 @@
   <!-- / [[[ FOOTER-AREA ]]] -->
 
 <!-- / #examContainer --></div>
+
+<script type="text/javascript">
+  (function () {
+    $('img.btnPlus').click( function() {
+      var btn = $(this);
+      $.post('/api/star/<?= $c->stash->{q}->name ?>', function(data) {
+        $("#added-stars").html("<img src='/img/exam/ico_plus_01.png'>");
+        btn.css("opacity", "0.3");
+      });
+    });
+  })();
+</script>
 ? };

@@ -26,14 +26,14 @@ my $s = Dojo::Model::Storage->new(
 isa_ok $s, 'Dojo::Model::Storage';
 
 subtest "result" => sub {
-    $s->set_result( foo => 1 );
-    $s->set_result( foo => 0 );
-    $s->set_result( foo => 1 );
-    $s->set_result( foo => 0 );
-    $s->set_result( foo => 1 );
-    $s->set_result( bar => 1 );
-    $s->set_result( bar => 1 );
-    $s->set_result( bar => 0 );
+    is_deeply $s->set_result( foo => 1 ) => { answered => 1, corrected => 1 };
+    is_deeply $s->set_result( foo => 0 ) => { answered => 2, corrected => 1 };
+    is_deeply $s->set_result( foo => 1 ) => { answered => 3, corrected => 2 };
+    is_deeply $s->set_result( foo => 0 ) => { answered => 4, corrected => 2 };
+    is_deeply $s->set_result( foo => 1 ) => { answered => 5, corrected => 3 };
+    is_deeply $s->set_result( bar => 1 ) => { answered => 1, corrected => 1 };
+    is_deeply $s->set_result( bar => 1 ) => { answered => 2, corrected => 2 };
+    is_deeply $s->set_result( bar => 0 ) => { answered => 3, corrected => 2 };
 
     my $foo = $s->get_result("foo");
     is_deeply $foo => { answered => 5, corrected => 3 }, "foo result";
