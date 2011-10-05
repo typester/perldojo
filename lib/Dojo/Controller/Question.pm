@@ -28,6 +28,12 @@ sub question :Path :Args {
             }
 
             $c->stash->{right} = $right;
+            my $r = models("Storage")->set_result( $q->name, $right );
+            $c->stash->{percentage} = sprintf("%.1f", $r->{corrected} / $r->{answered} * 100)
+                if $r && $r->{answered};
+            $c->stash->{star}
+                = models("Storage")->get_star( $q->name );
+
             $c->view('MT')->template('question/answer');
         }
         else {

@@ -1,0 +1,924 @@
+@charset "UTF-8";
+
+/*
+	##### SITE NAME #####
+	Copyright (C) KAYAC Inc. All Rights Reserved.
+
+	[Base]
+		0. Resetting default margin and padding
+		1. HTML, Body, Anchor
+		2. Heading, Paragraph
+		3. List
+		4. Table
+		5. Form
+		6. Other
+		7. For IE6/7
+
+	[Layout]
+		0. Container
+		1. Header
+		2. Content
+		3. Footer
+
+	[Module]
+		1. Common Module
+		2. ##### SPECIFIC MODULE NAME or SOMETHING #####
+		90. Other
+		99. Clearfix
+*/
+
+/* //////////////////////////////////////////////////
+[Base] 
+////////////////////////////////////////////////// */
+
+/* --------------------------------------------------
+	0. Resetting default margin and padding
+-------------------------------------------------- */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, p, blockquote, th, td, form, fieldset, legend {
+	margin: 0;
+	padding: 0;
+}
+
+/* --------------------------------------------------
+	1. HTML, Body, Anchor
+-------------------------------------------------- */
+html { overflow-y: scroll; } /* for mozilla: always display scrollbar */
+
+body {
+	color: #000;
+	font-family: "メイリオ", Meiryo, sans-serif;
+	font-size: 13px;
+	line-height: 1.5;
+	*font-size: 82%; /* for ie6/7 */
+}
+
+body.osMac {
+	font-family: "Hiragino Kaku Gothic ProN","ヒラギノ角ゴ ProN W3",sans-serif;
+}
+
+body.osWin {
+	font-family: "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+}
+
+/*
+Font-size list (base: 13px)
+ 62% =  8px
+ 70% =  9px
+ 77% = 10px
+ 85% = 11px        162% = 21px        239% = 31px
+ 93% = 12px        170% = 22px        247% = 32px
+100% = 13px        177% = 23px        254% = 33px
+108% = 14px        185% = 24px        262% = 34px
+116% = 15px        193% = 25px        270% = 35px
+124% = 16px        200% = 26px        277% = 36px
+131% = 17px        208% = 27px        285% = 37px
+139% = 18px        216% = 28px        293% = 38px
+147% = 19px        224% = 29px        300% = 39px
+154% = 20px        231% = 30px        308% = 40px
+*/
+
+a:link {
+	color: #330000;
+	text-decoration: none;
+}
+a:visited {
+	color: #330000;
+	text-decoration: none;
+}
+a:hover,
+a:active  {
+	color: #330000;
+	text-decoration: underline;
+}
+
+/* --------------------------------------------------
+	2. Heading, Paragraph
+-------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+	font-size: 100%;
+	line-height: 1.2;
+}
+/* p {} */
+
+/* --------------------------------------------------
+	3. List
+-------------------------------------------------- */
+li { list-style: none; }
+
+/* --------------------------------------------------
+	4. Table
+-------------------------------------------------- */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	font-size: 100%;
+	font-family: inherit;
+}
+caption, th, td {
+	text-align: left;
+	vertical-align: top;
+	font-weight: normal;
+}
+
+/* --------------------------------------------------
+	5. Form
+-------------------------------------------------- */
+fieldset { border: none; }
+
+input, textarea, select, label {
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	font-size: 100%;
+	font-family: inherit;
+	vertical-align: middle;
+}
+label { cursor: pointer; }
+
+textarea { overflow: auto; }
+
+/* --------------------------------------------------
+	6. Other
+-------------------------------------------------- */
+img {
+	border: none;
+	vertical-align: bottom;
+}
+object {
+	vertical-align: middle;
+	outline: none;
+}
+em, strong {
+	font-weight: bold;
+	font-style: normal;
+}
+abbr, acronym {
+	border: none;
+	font-variant: normal;
+}
+q:before, q:after { content: ''; }
+
+address, caption, cite, code, dfn, var {
+	font-weight: normal;
+	font-style: normal;
+}
+code, pre { font-family: monospace; }
+
+sup { vertical-align: text-top; }
+sub { vertical-align: text-bottom; }
+
+hr { display: none; }
+
+/* ------------------------------------------------------------
+	7. For IE6/7
+------------------------------------------------------------ */
+
+/* --- for ie7: page zoom bug fix --- */
+*:first-child+html body,
+*:first-child+html br { letter-spacing: 0; }
+
+/* //////////////////////////////////////////////////
+[Layout] 
+////////////////////////////////////////////////// */
+
+/* --------------------------------------------------
+	0. Container
+-------------------------------------------------- */
+#container {
+	width: 100%;
+	margin: 0 auto;
+	background: url(/img/backGround.gif);
+}
+
+#examContainer {
+	width: 100%;
+	margin: 0 auto;
+	background: url(/img/backGround.gif);
+}
+
+/* --------------------------------------------------
+	1. Header
+-------------------------------------------------- */
+#header {
+	height:572px;
+	background-image:url(/img/backGroundBrack.gif);
+}
+
+#examHeader {
+	width: 995px;
+	margin: 0 auto;
+	height: 130px;
+	position: relative;
+	left: -17px;
+	z-index: 1;
+	background: url(/img/exam/img_header_01.png) 0 0 no-repeat;
+}
+
+
+/* --------------------------------------------------
+	2. Content
+-------------------------------------------------- */
+#content {
+	margin-top:45px;
+	background-image:url(/img/ranking.png);
+	background-repeat:no-repeat;
+	width:960px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.ranking {
+	margin-top:85px;
+	float: left;
+	width: 450px;
+	height:300px;
+}
+.rankingHeader{
+	padding-top:15px;
+	padding-bottom:15px;
+	padding-left:15px;
+	background-color:#a09e8e;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.username{
+	padding-left:10px;
+}
+
+
+/* --------------------------------------------------
+	3. Footer
+-------------------------------------------------- */
+#footer {
+	margin-top: 30px;
+	padding-top:15px;
+	padding-bottom:15px;
+	background-color:#edecde;
+}
+
+/* kayacProject
+----------------------------------- */
+#kayacProject dt {
+	float: left;
+	width: 100px;
+}
+#kayacProject dd {
+	margin-left: 110px;
+}
+#kayacProject li {
+	float: left;
+	margin: 0 1em 5px 0;
+	white-space: nowrap;
+}
+
+/* copyright
+----------------------------------- */
+#footer .copyright {
+	width:960px;
+	text-align: right;
+	font-size:11px;
+	margin: 0 auto;
+}
+
+/* //////////////////////////////////////////////////
+[Module] 
+////////////////////////////////////////////////// */
+
+/* --------------------------------------------------
+	1. Common Module
+-------------------------------------------------- */
+
+.btnStyle1{
+	background: #211f18;
+	border: 1px solid #000;
+	box-shadow: 0 1px rgba(255,255,255,.7) inset;
+	line-height: 35px;
+	padding: 0 35px;
+	min-width: 70px;
+	display: inline-block;
+	color: #fff !important;
+	font-weight: bold;
+	text-align: center;
+	border-radius: 3px;
+	text-shadow: 0 1px 0 #000;
+	cursor: pointer;
+}
+
+.btnStyle1:hover{
+	background: #363129;
+	text-decoration: none;
+}
+
+.btnStyle1.type2{
+	background: #7f2d01;
+	border: 1px solid #883100;
+}
+
+.btnStyle1.type2:hover{
+	background: #913402;
+}
+
+.btnStyle1.type3{
+	background: #5e5220;
+	border: 1px solid #615b39;
+}
+
+.btnStyle1.type3:hover{
+	background: #695e2f;
+}
+
+.headerBg{
+	height: 545px;
+	background-image:url(/img/headerBackGround.gif);
+	background-position:center;
+	background-repeat:no-repeat;
+	position: relative;
+	padding-top: 55px;
+}
+
+
+#socialBtn{
+	position: absolute;
+	top: 18px;
+	right: 0;
+}
+
+#socialBtn li{
+	float: left;
+	margin-left: 10px;
+}
+
+.title{
+	width:406px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	background-image:url(/img/perl_test_title.gif);
+	background-repeat:no-repeat;
+}
+
+.title p{
+	padding-top:110px;
+	color:#FFF;
+	text-align:center;
+	line-height:23px;
+}
+
+.title img{
+	padding-top:60px;
+}
+
+.ranking p{
+	padding:4px;
+	padding-left:55px;
+	margin-bottom: 1px;
+	background-color:#edecdc;
+}
+
+.entrybtn{
+	width:340px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+}
+
+.entrybtn img{
+	width:340px;
+	margin-left:auto;
+	margin-right:auto;
+	text-align:center;
+	margin-top:20px;
+	margin-bottom:20px;
+}
+
+.rank1{
+	background-image:url(/img/ranking_1.gif);
+	background-repeat:no-repeat;
+	background-position:3px 3px;
+	line-height: 35px;
+}
+
+
+.rank2{
+	background-image:url(/img/ranking_2.gif);
+	background-repeat:no-repeat;
+	background-position:3px 3px;
+	line-height: 35px;
+}
+
+.rank3{
+	background-image:url(/img/ranking_3.gif);
+	background-repeat:no-repeat;
+	background-position:3px 3px;
+	line-height: 35px;
+}
+
+.rank4{
+	background-image:url(/img/ranking_4.gif);
+	background-repeat:no-repeat;
+	background-position:3px 3px;
+	line-height: 35px;
+}
+
+.rank5{
+	background-image:url(/img/ranking_5.gif);
+	background-repeat:no-repeat;
+	background-position:3px 3px;
+	line-height: 35px;
+}
+
+.right {
+	margin-top:85px;
+	float: right;
+	width: 450px;
+	height:300px;
+}
+
+.point{
+	padding-left:200px;
+	padding-right:10px;
+	font-size:18px;
+	line-height: -5px;
+}
+
+.socialTool{
+	margin-bottom:30px;
+}
+
+.blockStream .twtr-hd {
+    background: none repeat scroll 0 0 #FFFFFF !important;
+    display: none;
+    padding: 0 !important;
+}
+.blockStream .twtr-hd h3 {
+    background: none repeat scroll 0 0 #FFFFFF !important;
+    border-bottom: 1px solid #AAAAAA !important;
+    color: #999999 !important;
+    font-size: 20px !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
+    margin-bottom: 15px !important;
+    padding: 0 0 5px !important;
+}
+.blockStream .twtr-bd {
+    padding: 0 !important;
+}
+.blockStream .twtr-ft {
+    display: none;
+}
+.blockStream .twtr-widget {
+    font-family: Myriad,Helvetica,Arial,"Meiryo","メイリオ",sans-serif !important;
+    font-size: 11px !important;
+}
+
+/* examContent
+----------------------------------- */
+.examContent{
+	width: 915px;
+	margin: 0 auto 3px;
+	background: #edecde;
+	padding: 20px;
+}
+
+.examContent h2,
+.examContent .ttlStyle1{
+	font-size: 16px;
+	color: #000;
+	font-weight: bold;
+	background: #e5e3d0;
+	padding: 10px;
+	line-height: 1;
+	margin-bottom: 15px;
+}
+
+.examContent h3,
+.examContent .ttlStyle2{
+	font-size: 16px;
+	color: #000;
+	font-weight: bold;
+	border-bottom: 1px solid #999370;
+	padding: 10px;
+	padding-top: 0;
+	line-height: 1;
+	margin-bottom: 15px;
+}
+
+.examContent h4,
+.examContent .ttlStyle3{
+	font-size: 16px;
+	color: #000;
+	font-weight: bold;
+	padding: 0 10px;
+	line-height: 1;
+	margin-bottom: 15px;
+}
+
+.examContent h5,
+.examContent .ttlStyle4{
+	font-size: 14px;
+	color: #000;
+	font-weight: bold;
+	padding: 0 10px;
+	line-height: 1;
+	margin-bottom: 15px;
+}
+
+.examContent ul{
+	padding: 0 15px;
+	margin: 15px 0 10px;
+}
+
+.examContent ul li{
+	list-style: disc inside;
+	margin-bottom: 5px;
+}
+
+.examContent ol{
+	padding: 0 15px;
+	margin: 15px 0 10px;
+}
+
+.examContent ol li{
+	list-style: decimal inside;
+	margin-bottom: 5px;
+}
+
+.examContent p{
+	color: #000;
+	padding: 0 15px;
+	margin-bottom: 15px;
+}
+
+.examContent p:lsat-child{
+	margin-bottom: 0;
+}
+
+.examContent strong{
+	color: #cc330a;
+}
+
+.examContent pre{
+	display: block;
+	background: #e5e3d0;
+	border: 1px solid #cecab9;
+	border-radius: 3px;
+	padding: 15px;
+	font-family: "Courier New", Courier, monospace;
+	line-height: 1.75;
+	margin-bottom: 15px;
+}
+
+.examContent p span.code{
+	padding: 0;
+	border: none;
+	display: inline-block;
+	background: #e5e3d0;
+	padding: 5px;
+	border: 1px solid #cecab9;
+	border-radius: 3px;
+	margin: 0 5px;
+	line-height: 1;
+}
+
+.examContent blockquote{
+	display: block;
+	background: #e5e3d0;
+	border-left: 1px solid #999370;
+	padding: 15px;
+	margin-bottom: 15px;
+}
+
+.examContent blockquote p{
+	padding: 0;
+}
+
+.examContent blockquote cite:before{
+	content: "--";
+	margin-right: 10px;
+}
+
+.examContent p.error{
+	background: #fff;
+	border: 1px solid #cc330a;
+	padding: 15px;
+	font-weight: bold;
+	color: #cc330a;
+}
+
+.examContent .listAnswers{
+	padding: 0;
+	margin-bottom: 15px;
+}
+
+.examContent .listAnswers li{
+	list-style: none;
+}
+
+.examContent .listAnswers li span{
+	display: block;
+	float: left;
+	line-height: 24px;
+	margin-right: 7px;
+	font-weight: bold;
+	background: #fff;
+	width: 24px;
+	text-align: center;
+	border: 1px solid #d3d1be;
+	border-radius: 4px;
+	color: #72705e;
+}
+
+.examContent .listAnswers li label:hover span{
+	background: #a09e8e;
+	color: #fff;
+}
+
+.examContent .listAnswers li label.selected span{
+	background: #a09e8e;
+	color: #fff;
+	box-shadow: 2px 2px 0 #73715f inset;
+}
+
+.examContent .listAnswers li div{
+	line-height: 2;
+	margin-left: 35px;
+}
+
+.examContent .boxAnswer{
+	margin: 30px 0;
+}
+
+.examContent .boxAnswer .btnAnswer{
+	float: left;
+}
+
+.examContent .boxAnswer .counter{
+	float: right;
+	background: #d3d1be;
+	border: 1px solid #a09e8e;
+	border-radius: 4px;
+	font-size: 14px;
+	padding: 15px 30px;
+	line-height: 1;
+}
+
+.examContent .boxAnswer .counter span{
+	font-size: 24px;
+	font-weight: normal;
+	margin-right: 5px;
+}
+
+.examContent .boxAnswer .counter strong{
+	font-weight: normal;
+}
+
+.examContent .blockResult{
+	border: 1px solid #a09e8e;
+	padding: 0 15px;
+	position: relative;
+	z-index: 1;
+}
+
+.examContent .blockResult .hr1{
+	position: absolute;
+	top: -7px;
+	left: -3px;
+	z-index: 1;
+	padding: 0;
+	margin: 0;
+}
+
+.examContent .blockResult .hr2{
+	position: absolute;
+	bottom: -7px;
+	left: 2px;
+	z-index: 1;
+	padding: 0;
+	margin: 0;
+}
+
+.examContent .blockResultHeader{
+	position: relative;
+	font-weight: bold;
+	z-index:1;
+	text-align: center;
+	border-bottom: 1px solid #a09e8e;
+	font-size: 16px;
+	padding: 25px 0;
+}
+
+.examContent .blockResultHeader p{
+	margin-bottom: 0;
+}
+
+.examContent .blockResultHeader .score{
+	font-size: 46px;
+	line-height: 1;
+	margin-top: 10px;
+}
+
+.examContent .blockResultHeader .score .unit{
+	font-size: 16px;
+}
+
+.examContent .blockResultHeader .rank{
+	position: absolute;
+	top: 5px;
+	right: 150px;
+	z-index: 1;
+}
+
+.examContent .blockResultComment{
+	margin: 15px 0;
+	line-height: 1.75;
+}
+
+.examContent .blockResultList{
+}
+
+.examContent .blockResultList ul{
+	padding: 0;
+}
+
+.examContent .blockResultList li{
+	list-style: none;
+	width: 410px;
+	float: left;
+	line-height: 50px;
+	background: #cec9b7;
+	margin-bottom: 0;
+	margin-right: 1px;
+	padding: 0 15px;
+}
+
+.examContent .blockResultList li:nth-child(3),
+.examContent .blockResultList li:nth-child(4),
+.examContent .blockResultList li:nth-child(7),
+.examContent .blockResultList li:nth-child(8){
+	background: none;
+}
+
+.examContent .blockResultList li p{
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+.examContent .blockResultList li .number{
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 15px;
+}
+
+.examContent .blockResultList li .judge{
+	font-size: 16px;
+	font-weight: bold;
+	margin-right: 15px;
+	color: #b23f00;
+}
+
+.examContent .blockResultList li .question{
+	font-size: 10px;
+}
+
+.examContent .blockResultList li .author{
+	float: right;
+	padding-right: 15px;
+}
+
+.examContent .blockResultList li .author img{
+	vertical-align: middle;
+	position: relative;
+	z-index: 1;
+	top: -1px;
+	margin: 0 3px;
+}
+
+.examContent .blockResultList .tweet{
+	text-align: center;
+	margin: 30px 0;
+}
+
+.blockAction{
+	width: 935px;
+	margin: 30px auto;
+	background: url(/img/exam/bg_01.png) 50% 0 repeat-y #edecde;
+	border: 10px solid #a09e8e;
+	padding: 15px 0 25px;
+}
+
+.blockAction div{
+	width: 467px;
+	float: left;
+	text-align: center;
+}
+
+.blockAction .lead{
+	margin-bottom: 20px;
+}
+
+.blockAction .btnStyle1{
+	min-width: 180px;
+}
+
+.blockJudge{
+	text-align: center;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.blockQuestionInformation{
+	border: 1px solid #a09e8e;
+	padding: 20px;
+	margin-bottom: 30px;
+}
+
+.blockQuestionInformation table{
+	width: 100%;
+}
+
+.blockQuestionInformation th{
+	width: 105px;
+	font-weight: bold;
+	padding: 0 0 5px;
+}
+
+.blockQuestionInformation td{
+	padding: 0 0 5px;
+}
+
+.blockQuestionInformation .percent{
+	display: inline-block;
+	padding: 0;
+	height: 13px;
+	width: 200px;
+	background: #d3d1be;
+	position: relative;
+	z-index: 1;
+	margin-right: 10px;
+	top: 3px;
+}
+
+.blockQuestionInformation .percent img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.blockQuestionInformation .btnPlus{
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.blockQuestionInformation .author{
+	padding: 0;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
+.blockQuestionInformation .author img{
+	vertical-align: middle;
+	margin-right: 10px;
+}
+
+/* --------------------------------------------------
+	90. Other
+-------------------------------------------------- */
+.btn { cursor: pointer; }
+
+/* for Voice Browser */
+.hidden {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+/* Noscript Message */
+#msgNoscript {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+	width: 100%;
+	padding: 5px 0;
+	border-top: 1px solid #f00;
+	border-bottom: 1px solid #f00;
+	background: #fcc;
+	color: #f00;
+	line-height: 1.2;
+	text-align: center;
+	opacity: 0.7;
+}
+
+/* --------------------------------------------------
+	99. Clearfix
+-------------------------------------------------- */
+.group { *zoom: 1; } /* for ie6/7 */
+.group:after { content: ""; display: block; clear: both; }

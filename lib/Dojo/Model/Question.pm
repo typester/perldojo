@@ -36,7 +36,9 @@ has author => (
     lazy    => 1,
     default => sub {
         my ($self) = @_;
-        $self->data->section('AUTHOR');
+        my $author = $self->data->section('AUTHOR');
+        $author =~ s{</?p>}{}g;
+        $author;
     },
 );
 
