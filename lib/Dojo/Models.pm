@@ -11,6 +11,14 @@ register Questions => sub {
     Dojo::Model::Questions->new;
 };
 
+register AnswerSheet => sub {
+    my ($self) = @_;
+
+    $self->ensure_class_loaded('Dojo::Model::AnswerSheet');
+    Dojo::Model::AnswerSheet->new;
+};
+
+
 register Storage => sub {
     my ($self) = @_;
     $self->ensure_class_loaded("Dojo::Model::Storage");

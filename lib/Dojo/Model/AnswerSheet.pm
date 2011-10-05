@@ -6,6 +6,7 @@ use Carp;
 use Clone qw/ clone /;
 use Storable;
 use MIME::Base64 3.11;
+use Digest::SHA qw/ sha1_hex /;
 
 has questions => (
     is      => "rw",
@@ -26,6 +27,13 @@ has current => (
 );
 
 no Any::Moose;
+
+
+sub set_result {
+    my $self = shift;
+    my $correct = shift;
+    $self->results->[ $self->current - 1 ] = $correct ? 1 : 0;
+}
 
 sub go_next {
     my $self = shift;
@@ -66,6 +74,16 @@ sub deserialize {
     }
 
     $self;
+}
+
+sub digest {
+    my $self = shift;
+    sha1_hex( $self->serialize );
+}
+
+sub corrects {
+    my $self = shift;
+    scalar grep { $_ } @{ $self->results };
 }
 
 1;

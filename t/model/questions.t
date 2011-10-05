@@ -25,4 +25,8 @@ is $foo->answer, 'hoge', 'answer ok';
 
 like $foo->explanation, qr!<p>test explanation</p>!, 'explanation ok';
 
+my @q = $q->get_shuffled(3);
+is scalar @q => 3, "shuffled 3";
+isa_ok $_ => "Dojo::Model::Question" for @q;
+
 done_testing;

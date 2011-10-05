@@ -8,7 +8,8 @@ use Pod::HTMLEmbed;
 
 use Dojo::Models;
 use Dojo::Model::Question;
-    
+use List::Util qw/ shuffle /;
+
 has data_dir => (
     is      => 'ro',
     default => sub {
@@ -89,6 +90,21 @@ sub random_next {
 
     my @keys = keys %{ $self->data };
     $keys[ int rand scalar @keys ];
+}
+
+sub get_shuffled {
+    my ($self, $num) = @_;
+
+    my @data;
+    my $n = 0;
+    for my $key ( shuffle keys %{ $self->data } ) {
+        push @data, Dojo::Model::Question->new(
+            name => $key,
+            data => $self->data->{ $key },
+        );
+        last if ++$n == $num;
+    }
+    @data;
 }
 
 __PACKAGE__->meta->make_immutable;

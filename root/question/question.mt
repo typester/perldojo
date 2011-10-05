@@ -1,6 +1,7 @@
 ? extends 'common/base';
 
 ? my $q = $c->stash->{q};
+? my $as = $c->stash->{answer_sheet};
 
 ? block content => sub {
 
@@ -36,7 +37,9 @@
       </ol>
       <div class="boxAnswer group">
         <p class="btnAnswer"><button type="submit" class="btnStyle1">Answer</button></p>
-        <p class="counter"><span><strong>1</strong></span>問 / <span>10</span>問</p>
+? if ($as) {
+        <p class="counter"><span><strong><?= $as->current ?></strong></span>問 / <span><?= $as->total ?></span>問</p>
+? }
       </div>
     </form>
     <!-- / .examContent --></div>

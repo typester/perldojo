@@ -1,6 +1,7 @@
 ? extends 'common/base';
 
-? my $q = $c->stash->{q};
+? my $q  = $c->stash->{"q"};
+? my $as = $c->stash->{answer_sheet};
 
 ? block content => sub {
 
@@ -56,7 +57,12 @@
         <p class="author"><img src="https://secure.gravatar.com/avatar/fbc6511bcc0649366086c0445fb456d3?s=140&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="30" height="30" alt="" /><?= $q->author ?></p>
       </div>
     </div>
-    <div><a href="/question" class="btnStyle1">Next</a></div>
+? if (!$as) {
+? } elsif ($as->current == $as->total + 1) {
+    <div><a href="/question/result/<?= $as->serialize ?>" class="btnStyle1">結果一覧へ</a></div>
+? } else {
+    <div><a href="/question/<?= $as->current_question->name ?>" class="btnStyle1">Next</a></div>
+? }
     <!-- / .examContent --></div>
 
   <!-- [[[ FOOTER-AREA ]]] -->
