@@ -48,10 +48,7 @@
             <td>
               <img src="/img/exam/btn_plus_01.png" width="29" height="20" alt="" class="btnPlus">
               <span id="stars">
-? for my $i ( 1 .. $c->stash->{star} ) {
-                <img src="/img/exam/ico_plus_01.png">
-? }
-                <span id="added-stars"></span>
+<? for my $i ( 1 .. $c->stash->{star} ) {?><img src="/img/exam/ico_plus_01.png"><? } ?><span id="added-stars"></span>
               </span>
             </td>
           </tr>
@@ -79,8 +76,7 @@
       added = true;
       $("#added-stars").html("<img src='/img/exam/ico_plus_01.png' id='added-star'>");
       $("#added-star").css("opacity", "0.5");
-      btn.css("opacity", "0.3");
-      btn.removeClass("btnPlus");
+      btn.css({"opacity": "0.3", "cursor": "auto"});
       $.post('/api/star/<?= $c->stash->{q}->name ?>', function(){
         $("#added-star").css("opacity", 1);
       });
