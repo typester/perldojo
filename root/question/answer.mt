@@ -72,11 +72,17 @@
 
 <script type="text/javascript">
   (function () {
+    var added = false;
     $('img.btnPlus').click( function() {
+      if (added) return;
       var btn = $(this);
-      $.post('/api/star/<?= $c->stash->{q}->name ?>', function(data) {
-        $("#added-stars").html("<img src='/img/exam/ico_plus_01.png'>");
-        btn.css("opacity", "0.3");
+      added = true;
+      $("#added-stars").html("<img src='/img/exam/ico_plus_01.png' id='added-star'>");
+      $("#added-star").css("opacity", "0.5");
+      btn.css("opacity", "0.3");
+      btn.removeClass("btnPlus");
+      $.post('/api/star/<?= $c->stash->{q}->name ?>', function(){
+        $("#added-star").css("opacity", 1);
       });
     });
   })();

@@ -1,4 +1,5 @@
 *~
+.DS_Store
 inc/
 blib/
 pm_to_blib
