@@ -14,13 +14,16 @@ sub setup_app (%) {
     $dojo->setup;
 
     my $memcached = setup_memcached();
+
     $dojo->config->{storage}->{backend}->{args}->{servers}
         = [ "127.0.0.1:" . $memcached->port ];
+    $dojo->config->{storage}->{__backend} = $memcached; # keep instance
 
     if ($args->{config}) {
         $dojo->config->{$_} = clone($args->{config}->{$_})
             for keys %{ $args->{config} };
     }
+
     sub { $dojo->handler->(@_) };
 }
 

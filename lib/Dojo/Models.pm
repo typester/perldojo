@@ -2,6 +2,7 @@ package Dojo::Models;
 use strict;
 use warnings;
 use Ark::Models '-base';
+use Carp;
 
 register Questions => sub {
     my ($self) = @_;
@@ -13,13 +14,12 @@ register Questions => sub {
 register Storage => sub {
     my ($self) = @_;
     $self->ensure_class_loaded("Dojo::Model::Storage");
-    $self->ensure_class_loaded("Cache::Memcached::Fast");
+
+    my $args = $self->get('conf')->{storage}->{backend};
+    croak "config.storage.backend required" unless $args;
 
     Dojo::Model::Storage->new(
-        backend => Cache::Memcached::Fast->new(
-            $self->get('conf')->{storage}->{backend}->{args}
-         || { servers => [ "127.0.0.1:11211" ] },
-        ),
+        backend => $self->adaptor($args),
     );
 };
 
