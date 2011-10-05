@@ -12,7 +12,7 @@ my $q = Dojo::Model::Questions->new(
 );
 isa_ok $q, 'Dojo::Model::Questions';
 
-is scalar keys %{$q->data}, 2, '2 data loaded ok';
+is scalar keys %{$q->data}, 4, '4 data loaded ok';
 
 ok my $foo = $q->get('foo'), 'foo loaded ok';
 ok my $foobar = $q->get('foo/bar'), 'foo/bar loaded ok';
