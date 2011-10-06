@@ -17,12 +17,12 @@
     <div class="blockJudge">
 ? if ($c->stash->{right}) {
     <p>
-      <img src="/img/exam/img_correct_01.png" width="179" height="179" alt="" />
+      <img src="/img/exam/img_correct_01.png" width="179" height="179" alt="">
     </p>
     <p class="message">正解！おめでとうございます！</p>
 ? } else {
     <p>
-      <img src="/img/exam/img_incorrect_01.png" width="162" height="167" alt="" />
+      <img src="/img/exam/img_incorrect_01.png" width="162" height="167" alt="">
     </p>
     <p class="message">残念！</p>
 ? }
@@ -38,7 +38,7 @@
             <th scope="row">正答率</th>
             <td>
 ? if ($c->stash->{percentage}) {
-              <p class="percent"><img src="/img/exam/img_meter.png" height="13" width="<?= int($c->stash->{percentage}) * 2 ?>" /></p><?= $c->stash->{percentage} ?>％
+              <p class="percent"><img src="/img/exam/img_meter.png" height="13" width="<?= int($c->stash->{percentage}) * 2 ?>"></p><?= $c->stash->{percentage} ?>％
 ? } else {
               <p class="percent"></p> - ％
 ? }
@@ -54,7 +54,7 @@
             </td>
           </tr>
         </table>
-        <p class="author"><img src="https://secure.gravatar.com/avatar/fbc6511bcc0649366086c0445fb456d3?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="30" height="30" alt="" /><?= $q->author ?></p>
+        <p class="author"><img src="https://secure.gravatar.com/avatar/fbc6511bcc0649366086c0445fb456d3?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="30" height="30" alt=""><?= $q->author ?></p>
       </div>
     </div>
 ? if (!$as) {
