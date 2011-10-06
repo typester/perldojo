@@ -41,3 +41,4 @@ test explanation
 =head1 AUTHOR
 
 Daisuke Murase
+http://gravatar.com/avatar/fbc6511bcc0649366086c0445fb456d3

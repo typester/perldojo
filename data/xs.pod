@@ -1,0 +1,42 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+Perl を C 言語などで拡張するモジュールを書くための機構は何？
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+XS
+
+=item 2.
+
+XL
+
+=item 3.
+
+SS
+
+=item 4.
+
+XSS
+
+=back
+
+=head1 ANSWER
+
+1
+
+=head1 EXPLANATION
+
+XS は Perl と(Perl と一緒に使いたい)C のコード(または C ライブラリ)との 間の拡張インターフェースを作るのに使われるインターフェース記述 ファイルフォーマットです。
+
+XS インターフェースはライブラリと動的または静的にリンクされて、 Perl とリンクすることのできる新しいライブラリを生成します。 XS インターフェース記述はは XS 言語で書かれており、 Perl 拡張インターフェースのコアコンポーネントです。
+
+=head1 AUTHOR
+
+fujiwara
+https://github.com/fujiwara

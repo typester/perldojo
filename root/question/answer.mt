@@ -54,7 +54,12 @@
             </td>
           </tr>
         </table>
-        <p class="author"><img src="https://secure.gravatar.com/avatar/fbc6511bcc0649366086c0445fb456d3?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="30" height="30" alt=""><?= $q->author ?></p>
+        <p class="author">
+? if ($q->gravatar_uri) {
+          <img src="<?= $q->gravatar_uri ?>" width="30" height="30" alt="">
+? }
+          <?= raw_string( $q->author_html ) ?>
+        </p>
       </div>
     </div>
 ? if (!$as) {
