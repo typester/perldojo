@@ -58,13 +58,19 @@
       </div>
     </div>
 ? if (!$as) {
-? } elsif ($as->current == $as->total + 1) {
-    <div><a href="/question/result/<?= $as->serialize ?>" class="btnStyle1">結果一覧へ</a></div>
+    <div><a href="/" class="btnStyle1">Top</a></div>
 ? } else {
-    <div><a href="/question/<?= $as->current_question->name ?>" class="btnStyle1">Next</a></div>
+    <div class="boxAnswer group">
+?     if ( my $nq = $as->next_question ) {
+      <a href="/question/<?= $nq->name ?>" class="btnStyle1">Next</a>
+?     } else {
+      <a href="/question/result/<?= $as->serialize ?>" class="btnStyle1">結果一覧へ</a>
+?     }
+        <p class="counter"><span><strong><?= $as->current ?></strong></span>問 / <span><?= $as->total ?></span>問</p>
+    </div>
 ? }
-    <!-- / .examContent --></div>
 
+  <!-- / .examContent --></div>
   <!-- [[[ FOOTER-AREA ]]] -->
   <div id="footer">
     <p class="copyright vcard">Copyright &#169; <a href="http://www.kayac.com/" title="株式会社KAYAC（カヤック）古都鎌倉から新しい価値感のサービスを次々にリリースする面白法人" class="external fn org url">KAYAC Inc. </a> All Rights Reserved.</p>
