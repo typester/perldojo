@@ -28,7 +28,6 @@ has current => (
 
 no Any::Moose;
 
-
 sub set_result {
     my $self = shift;
     my $correct = shift;
@@ -48,6 +47,22 @@ sub total {
 sub current_question {
     my $self = shift;
     $self->questions->[ $self->current - 1 ];
+}
+
+sub next_question {
+    my $self = shift;
+    $self->questions->[ $self->current ];
+}
+
+sub set_current_question {
+    my $self = shift;
+    my $name = shift;
+    my $n = 0;
+    for my $q (@{ $self->questions }) {
+        $n++;
+        $self->current($n) and last if $q->name eq $name;
+    }
+    $self->current_question;
 }
 
 sub serialize {

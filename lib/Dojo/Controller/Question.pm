@@ -4,12 +4,15 @@ use Ark 'Controller';
 use Try::Tiny;
 use Dojo::Models;
 
-sub auto :Private {
+sub auto :Private { 1 }
+
+sub restore_answer_sheet :Private {
     my ($self, $c) = @_;
 
+    my $as;
     if ( my $serialized = $c->req->cookies->{ $c->config->{cookie_name} } ) {
         $c->log->info("cookie found. restore answer_sheet");
-        $c->stash->{answer_sheet} = try {
+        $as = try {
             models("AnswerSheet")->deserialize(
                 serialized => $serialized,
                 questions  => models("Questions"),
@@ -19,8 +22,7 @@ sub auto :Private {
             $c->log->error("restore failed. $e");
         };
     }
-
-    1;
+    $c->stash->{answer_sheet} = $as;
 }
 
 
@@ -31,21 +33,25 @@ sub index :Path {
     $as->questions([ models("Questions")->get_shuffled(5) ]);
     $c->stash->{answer_sheet} = $as;
 
-    $c->redirect_and_detach('/question/' . $as->current_question->name);
+    $c->redirect_and_detach(
+        $c->uri_for('/question/' . $as->current_question->name)->as_string,
+    );
 }
 
 sub question :Path :Args {
     my ($self, $c, @args) = @_;
 
+    my $as   = $c->forward("restore_answer_sheet");
     my $name = join "/", @args;
-    my $q = try {
-        models('Questions')->get($name);
-    };
-    unless ($q) {
-        $c->log->error("cannot load question: $name");
+
+    my $q = $as ? $as->set_current_question($name)
+                : eval { models('Questions')->get($name) };
+
+    if (!$q || $@) {
+        $c->log->error("cannot load question: $name $@");
+        $c->stash->{reset} = 1;
         $c->detach('/default');
     }
-
     $c->stash->{'q'} = $q;
 
     if ('POST' eq $c->req->method) {
@@ -63,9 +69,8 @@ sub question :Path :Args {
             $c->stash->{star}
                 = models("Storage")->get_star( $q->name );
 
-            if (my $as = $c->stash->{answer_sheet}) {
+            if ($as) {
                 $as->set_result($right ? 1 : 0);
-                $as->go_next;
             }
             $c->view('MT')->template('question/answer');
         }

@@ -26,6 +26,16 @@ test_psgi $app, sub {
        is $res->code => 404, "not found xxxxx";
    };
 
+   subtest star_405 => sub {
+       my $res = $cb->( PUT "http://localhost/api/star/${name}" );
+       is $res->code => 405, "method not allowed";
+   };
+
+   subtest star_head => sub {
+       my $res = $cb->( HEAD "http://localhost/api/star/${name}" );
+       is $res->code => 200, "head ok";
+   };
+
    subtest star_get_before => sub {
        my $res = $cb->( GET "http://localhost/api/star/${name}" );
        is $res->code => 200, "method not allowed GET";

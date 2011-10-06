@@ -27,8 +27,8 @@
     <p class="message">残念！</p>
 ? }
   </div>
-    <h3 class="ttlStyle2">正解は <?= encoded_string $q->answer ?> でした</h3>
-    <h4 class="ttlStyle3">解説</h4>
+    <h3 class="ttlStyle2 answerResult">正解は <?= encoded_string $q->answer ?> でした</h3>
+    <h4 class="ttlStyle3 answerDescription">解説</h4>
     <?= encoded_string $q->explanation ?>
 
     <div class="blockQuestionInformation">
@@ -54,17 +54,23 @@
             </td>
           </tr>
         </table>
-        <p class="author"><img src="https://secure.gravatar.com/avatar/fbc6511bcc0649366086c0445fb456d3?s=140&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="30" height="30" alt="" /><?= $q->author ?></p>
+        <p class="author"><img src="https://secure.gravatar.com/avatar/fbc6511bcc0649366086c0445fb456d3?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="30" height="30" alt="" /><?= $q->author ?></p>
       </div>
     </div>
 ? if (!$as) {
-? } elsif ($as->current == $as->total + 1) {
-    <div><a href="/question/result/<?= $as->serialize ?>" class="btnStyle1">結果一覧へ</a></div>
+    <div><a href="<?= $c->uri_for('/') ?>" class="btnStyle1">Top</a></div>
 ? } else {
-    <div><a href="/question/<?= $as->current_question->name ?>" class="btnStyle1">Next</a></div>
+    <div class="boxAnswer group">
+?     if ( my $nq = $as->next_question ) {
+      <a href="<?= $c->uri_for('/question/', $nq->name) ?>" class="btnStyle1 gotoNext">Next</a>
+?     } else {
+      <a href="<?= $c->uri_for('/question/result/', $as->serialize) ?>" class="btnStyle1 gotoResult">結果一覧へ</a>
+?     }
+        <p class="counter"><span><strong><?= $as->current ?></strong></span>問 / <span><?= $as->total ?></span>問</p>
+    </div>
 ? }
-    <!-- / .examContent --></div>
 
+  <!-- / .examContent --></div>
   <!-- [[[ FOOTER-AREA ]]] -->
   <div id="footer">
     <p class="copyright vcard">Copyright &#169; <a href="http://www.kayac.com/" title="株式会社KAYAC（カヤック）古都鎌倉から新しい価値感のサービスを次々にリリースする面白法人" class="external fn org url">KAYAC Inc. </a> All Rights Reserved.</p>
