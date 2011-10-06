@@ -2,6 +2,7 @@
 
 ? my $q  = $c->stash->{q};
 ? my $as = $c->stash->{answer_sheet};
+? my $rank = $as->rank;
 
 ? block content => sub {
 
@@ -19,11 +20,20 @@
       <p class="hr2"><img src="/img/exam/img_hr_02.png" width="900" height="13" alt="" /></p>
       <div class="blockResultHeader">
         <p><?= $as->total ?>問中<?= $as->corrects ?>問正解</p>
-        <p class="score"><?= int( $as->corrects / $as->total * 100 ) ?><span class="unit">点</span></p>
-        <p class="rank"><img src="/img/exam/img_rank_01.png" width="132" height="132" alt="" /></p>
+        <p class="score"><span class="unit"><?= $as->score ?>点</span></p>
+        <p class="rank"><img src="/img/exam/img_rank_<?= sprintf('%02d', $as->rank) ?>.png" width="132" height="132" alt="" /></p>
       </div>
       <div class="blockResultComment">
-        <p>あなたはもしかしてラリーウォール自身ではないですか？でなければ、生き別れの双子のきょうだい？<br />ぜひPerl道場の問題を一緒につくってください。あなたこそPerl界、いや、プログラミング界の希望の星なのですから！</p>
+        <p>
+? if ($rank == 1) {
+          あなたはもしかしてラリーウォール自身ではないですか？でなければ、生き別れの双子のきょうだい？<br />ぜひPerl道場の問題を一緒につくってください。あなたこそPerl界、いや、プログラミング界の希望の星なのですから！
+? } elsif ($rank == 2) {
+          rank 2 の文言
+? } elsif ($rank == 3) {
+          rank 3 の文言
+? } elsif ($rank == 4) {
+          rank 4 の文言
+? }
       </div>
       <div class="blockResultList">
         <ul class="group">

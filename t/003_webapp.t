@@ -39,8 +39,10 @@ test_psgi $app, sub {
    };
 
     my $page = 0;
+    my $break;
  QUESTIONS:
     while (++$page <= 10) {
+        my $choices;
         subtest question_get => sub {
             note "GET $next_uri";
             my $res = $cb->( GET $next_uri,
@@ -50,18 +52,32 @@ test_psgi $app, sub {
 
             my $pq = pQuery($res->content);
             is $pq->find(".counter strong")->html => $page, "counter $page";
+            $choices = $pq->find(".choices")->length;
+            note "choices=$choices";
+        };
+
+        subtest question_post_error => sub {
+            note "POST $next_uri";
+            my $res = $cb->( POST $next_uri,
+                             Cookie  => "dojostate=$sid" );
+            is $res->code => 200, "status 200";
+            $sid = res2sid($res);
+
+            my $pq = pQuery($res->content);
+            ok $pq->find(".error")->html, "error message";
         };
 
         subtest question_post => sub {
             note "POST $next_uri";
             my $res = $cb->( POST $next_uri,
                              Cookie  => "dojostate=$sid",
-                             Content => [ "choice" => int(rand 4) + 1 ] );
+                             Content => [ "choice" => int( rand($choices) ) + 1 ] );
             is $res->code => 200, "status 200";
             $sid = res2sid($res);
 
             my $pq = pQuery($res->content);
             is $pq->find(".counter strong")->html => $page, "counter $page";
+            ok ! $pq->find(".error")->get(0), "no error message";
             my $node;
             if ( $node = $pq->find(".gotoNext")->get(0)
                       || $pq->find(".gotoResult")->get(0) )
@@ -71,10 +87,12 @@ test_psgi $app, sub {
                 ok $next_uri;
             }
             else {
+                note $res->content;
                 fail "no next uri";
+                $break = 1;
             }
         };
-        last QUESTIONS if $next_uri =~ /result/;
+        last QUESTIONS if $next_uri =~ /result/ || $break;
     } # end of QUESTIONS
 
     subtest result_get => sub {

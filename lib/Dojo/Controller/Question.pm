@@ -29,10 +29,9 @@ sub restore_answer_sheet :Private {
 sub index :Path {
     my ($self, $c) = @_;
 
-    my $as = models("AnswerSheet");
+    my $as = models("AnswerSheet")->new;
     $as->questions([ models("Questions")->get_shuffled(5) ]);
     $c->stash->{answer_sheet} = $as;
-
     $c->redirect_and_detach(
         $c->uri_for('/question/' . $as->current_question->name)->as_string,
     );
@@ -54,42 +53,54 @@ sub question :Path :Args {
     }
     $c->stash->{'q'} = $q;
 
-    if ('POST' eq $c->req->method) {
-        my $choice = $c->req->param('choice');
-        if ($choice and $choice =~ /^\d+$/ and defined $q->choices->[ $choice - 1 ]) {
-            my $right = 0;
-            if ($choice == $q->answer_number) {
-                $right = 1;
-            }
+    if ( $c->req->method eq "POST" )  {
+        $c->forward("question_POST");
+    }
+}
 
-            $c->stash->{right} = $right;
-            my $r = models("Storage")->set_result( $q->name, $right );
-            $c->stash->{percentage} = sprintf("%.1f", $r->{corrected} / $r->{answered} * 100)
-                if $r && $r->{answered};
-            $c->stash->{star}
-                = models("Storage")->get_star( $q->name );
+sub question_POST :Private {
+    my ($self, $c) = @_;
 
-            if ($as) {
-                $as->set_result($right ? 1 : 0);
-            }
-            $c->view('MT')->template('question/answer');
+    my $as = $c->stash->{answer_sheet};
+    my $q  = $c->stash->{"q"};
+
+    my $choice = $c->req->param('choice');
+    if ( $choice and $choice =~ /^\d+$/ and defined $q->choices->[ $choice - 1 ] ) {
+        my $right = 0;
+        if ($choice == $q->answer_number) {
+            $right = 1;
         }
-        else {
-            $c->stash->{err} = 'Please choice an answer';
+
+        $c->stash->{right} = $right;
+        my $r = models("Storage")->set_result( $q->name, $right );
+        $c->stash->{percentage} = sprintf("%.1f", $r->{corrected} / $r->{answered} * 100)
+            if $r && $r->{answered};
+        $c->stash->{star}
+            = models("Storage")->get_star( $q->name );
+
+        if ($as) {
+            $as->set_result($right ? 1 : 0);
         }
+        $c->view('MT')->template('question/answer');
+    }
+    else {
+        $c->stash->{err} = 'Please choice an answer';
     }
 }
 
 sub result :Local :Args(1) {
     my ($self, $c, $serialized) = @_;
-
-    $c->stash->{answer_sheet} = try {
+    my $as = try {
         models("AnswerSheet")->deserialize(
             serialized => $serialized,
             questions  => models("Questions"),
         );
-    } or $c->detach("/default");
-
+    };
+    if (!$as || $@) {
+        $c->log->error("Can't restore answer sheet. $@");
+        $c->detach("/default");
+    }
+    $c->stash->{answer_sheet} = $as;
     $c->stash->{reset} = 1;
 }
 

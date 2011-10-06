@@ -28,6 +28,16 @@ has current => (
 
 no Any::Moose;
 
+sub score {
+    my $self = shift;
+    int( $self->corrects / $self->total * 100 );
+}
+
+sub rank {
+    my $self = shift;
+    int( (99 - $self->score) / 25 ) + 1;
+}
+
 sub set_result {
     my $self = shift;
     my $correct = shift;
@@ -82,6 +92,9 @@ sub deserialize {
     my $r = eval {
         Storable::thaw( MIME::Base64::decode_base64url( $args{serialized} ) );
     };
+    if ($@) {
+        die $@;
+    }
     my $self = $class->new($r);
 
     for my $qname (@{ $r->{questions} }) {
