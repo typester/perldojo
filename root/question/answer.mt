@@ -27,8 +27,8 @@
     <p class="message">残念！</p>
 ? }
   </div>
-    <h3 class="ttlStyle2">正解は <?= encoded_string $q->answer ?> でした</h3>
-    <h4 class="ttlStyle3">解説</h4>
+    <h3 class="ttlStyle2 answerResult">正解は <?= encoded_string $q->answer ?> でした</h3>
+    <h4 class="ttlStyle3 answerDescription">解説</h4>
     <?= encoded_string $q->explanation ?>
 
     <div class="blockQuestionInformation">
@@ -54,17 +54,17 @@
             </td>
           </tr>
         </table>
-        <p class="author"><img src="https://secure.gravatar.com/avatar/fbc6511bcc0649366086c0445fb456d3?s=140&d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="30" height="30" alt="" /><?= $q->author ?></p>
+        <p class="author"><img src="https://secure.gravatar.com/avatar/fbc6511bcc0649366086c0445fb456d3?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-140.png" width="30" height="30" alt="" /><?= $q->author ?></p>
       </div>
     </div>
 ? if (!$as) {
-    <div><a href="/" class="btnStyle1">Top</a></div>
+    <div><a href="<?= $c->uri_for('/') ?>" class="btnStyle1">Top</a></div>
 ? } else {
     <div class="boxAnswer group">
 ?     if ( my $nq = $as->next_question ) {
-      <a href="/question/<?= $nq->name ?>" class="btnStyle1">Next</a>
+      <a href="<?= $c->uri_for('/question/', $nq->name) ?>" class="btnStyle1 gotoNext">Next</a>
 ?     } else {
-      <a href="/question/result/<?= $as->serialize ?>" class="btnStyle1">結果一覧へ</a>
+      <a href="<?= $c->uri_for('/question/result/', $as->serialize) ?>" class="btnStyle1 gotoResult">結果一覧へ</a>
 ?     }
         <p class="counter"><span><strong><?= $as->current ?></strong></span>問 / <span><?= $as->total ?></span>問</p>
     </div>
