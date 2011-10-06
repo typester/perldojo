@@ -14,6 +14,7 @@ requires 'Pod::HTMLEmbed' => '0.04';
 requires 'MIME::Base64'   => '3.11';
 requires 'Cache::Memcached::Fast';
 requires 'List::Util';
+requires 'Furl';
 
 test_requires 'Test::More' => '0.88';
 test_requires 'Test::TCP';
