@@ -2,6 +2,7 @@ package t::Utils;
 use strict;
 use warnings;
 use Dojo;
+use Test::mysqld;
 
 use Exporter 'import';
 our @EXPORT = qw/ setup_memcached setup_app /;
