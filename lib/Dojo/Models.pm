@@ -32,12 +32,5 @@ register Storage => sub {
     );
 };
 
-register Cache => sub {
-    my ($self) = @_;
-
-    my $args = $self->get('conf')->{cache};
-    $self->adaptor($args),
-};
-
 1;
 
