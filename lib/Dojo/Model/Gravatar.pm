@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use Furl;
 use JSON;
+use Digest::MD5 qw/ md5_hex /;
 
 our $UA;
 our $Cache;
@@ -16,7 +17,10 @@ sub gravatar_uri {
     my $class  = shift;
     my $author = shift;
 
-    if ($author =~ m{https?://(?:secure\.)?gravatar\.com/avatar/([0-9a-f]+)}) {
+    if ($author =~ qr{($Email::Valid::Loose::Addr_spec_re)}) {
+        return "http://www.gravatar.com/avatar/" . md5_hex($1);
+    }
+    elsif ($author =~ m{https?://(?:secure\.)?gravatar\.com/avatar/([0-9a-f]+)}) {
         return "http://www.gravatar.com/avatar/$1";
     }
     elsif ($author =~ m{https?://github\.com/(\w+)}) {

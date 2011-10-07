@@ -46,7 +46,7 @@
             <p class="question">【<a href="/question/<?= $q->name ?>">問題を見る</a>】</p>
             <p class="author">by
               <img src="<?= $c->uri_for('/question/icon', $q->name) ?>" width="20" height="20" alt="">
-              <?= raw_string( $q->author_html ) ?>
+              <?= $q->author_name ?>
           </li>
 ? }
         </ul>

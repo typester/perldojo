@@ -2,6 +2,7 @@ package Dojo::Model::Question;
 use utf8;
 use Any::Moose;
 use Dojo::Model::Gravatar;
+use Email::Valid::Loose;
 
 has name => (
     is       => 'ro',
@@ -87,26 +88,25 @@ has gravatar_uri => (
     },
 );
 
-has author_html => (
+has author_name => (
     is      => "rw",
     lazy    => 1,
-    default => \&build_author_html,
+    default => \&build_author_name,
 );
 
 no Any::Moose;
 
-sub build_author_html {
+sub build_author_name {
     my $self   = shift;
     my $author = $self->author;
-    my $html   = "";
+    my $addr_spec_re = $Email::Valid::Loose::Addr_spec_re;
+    my $uri_re       = qr{s?https?://[-_.!~*'()a-zA-Z0-9;/?:\@&=+\$,%#]+};
+    my $re           = qr{($addr_spec_re|$uri_re)};
 
-    $author =~ s{(https?://[^\s]+)}{
-        my $uri = $1;
-        (my $suri = $uri) =~ s{^https?://}{};
-        return "" if $uri =~ /gravatar\.com/;
-        sprintf q{<a href="%s">%s</a>}, $uri, substr($suri, 0, 30);
-    }eg;
-    $author;
+    my $name = (split /$re/, $author)[0];
+    $name =~ s{\A\s+}{}mg;
+    $name =~ s{\s+\z}{}mg;
+    $name;
 }
 
 __PACKAGE__->meta->make_immutable;

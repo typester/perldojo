@@ -56,7 +56,7 @@
         </table>
         <p class="author">
           <img src="<?= $c->uri_for('/question/icon', $q->name) ?>" width="30" height="30" alt="">
-          <?= raw_string( $q->author_html ) ?>
+          <?= $q->author_name ?>
         </p>
       </div>
     </div>

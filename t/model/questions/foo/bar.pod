@@ -41,3 +41,4 @@ test bar explanation
 =head1 AUTHOR
 
 Daisuke Murase
+typester@cpan.org
