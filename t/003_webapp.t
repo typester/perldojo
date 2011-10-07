@@ -56,6 +56,16 @@ test_psgi $app, sub {
             note "choices=$choices";
         };
 
+        subtest question_icon_get => sub {
+            (my $uri = $next_uri) =~ s{/question/}{/question/icon/};
+            my $res = $cb->( GET $uri,
+                             Cookie => "dojostate=$sid" );
+            is $res->code => 302, "status 302";
+            like $res->header("Location") => qr{^https?://www\.gravatar\.com};
+            note $res->header("Location");
+            ok !$res->header("Set-Cookie");
+        };
+
         subtest question_post_error => sub {
             note "POST $next_uri";
             my $res = $cb->( POST $next_uri,

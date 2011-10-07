@@ -55,9 +55,7 @@
           </tr>
         </table>
         <p class="author">
-? if ($q->gravatar_uri) {
-          <img src="<?= $q->gravatar_uri ?>" width="30" height="30" alt="">
-? }
+          <img src="<?= $c->uri_for('/question/icon', $q->name) ?>" width="30" height="30" alt="">
           <?= raw_string( $q->author_html ) ?>
         </p>
       </div>

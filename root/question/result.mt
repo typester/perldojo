@@ -45,9 +45,7 @@
             <p class="judge"><?= $as->results->[$n - 1] ? "正解" : "不正解" ?></p>
             <p class="question">【<a href="/question/<?= $q->name ?>">問題を見る</a>】</p>
             <p class="author">by
-?    if ($q->gravatar_uri) {
-              <img src="<?= $q->gravatar_uri ?>" width="20" height="20" alt="">
-?    }
+              <img src="<?= $c->uri_for('/question/icon', $q->name) ?>" width="20" height="20" alt="">
               <?= raw_string( $q->author_html ) ?>
           </li>
 ? }

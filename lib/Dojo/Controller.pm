@@ -15,7 +15,8 @@ sub end :Private {
     my ($self, $c) = @_;
 
     $c->res->content_type('text/html; charset=utf-8') unless $c->res->content_type;
-    $c->res->header('Cache-Control' => 'private');
+    $c->res->header("Cache-Control" => "private")
+        unless defined $c->res->header("Cache-Control");
 
     unless ($c->res->has_body or $c->res->status =~ /^3/) {
         $c->forward( $c->view('MT') );

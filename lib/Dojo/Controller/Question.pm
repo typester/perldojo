@@ -32,6 +32,8 @@ sub index :Path {
     my $as = models("AnswerSheet")->new;
     $as->questions([ models("Questions")->get_shuffled(5) ]);
     $c->stash->{answer_sheet} = $as;
+
+    $c->forward("keep_session");
     $c->redirect_and_detach(
         $c->uri_for('/question/' . $as->current_question->name)->as_string,
     );
@@ -56,6 +58,7 @@ sub question :Path :Args {
     if ( $c->req->method eq "POST" )  {
         $c->forward("question_POST");
     }
+    $c->forward("keep_session");
 }
 
 sub question_POST :Private {
@@ -101,27 +104,47 @@ sub result :Local :Args(1) {
         $c->detach("/default");
     }
     $c->stash->{answer_sheet} = $as;
-    $c->stash->{reset} = 1;
+    $c->forward("reset_session");
 }
 
-sub end :Private {
+sub icon :Local :Args {
+    my ($self, $c, @args) = @_;
+
+    my $name = join "/", @args;
+    my $q = eval { models('Questions')->get($name) };
+    if (!$q || $@) {
+        $c->log->error("cannot load question: $name $@");
+        $c->detach('/default');
+    }
+    my $cache   = models("Cache");
+    my $expires = $c->config->{cache}->{expires} || 0;
+    my $key     = "gravatar_uri:" . $q->name;
+    my $uri     = $cache->get($key);
+    unless ($uri) {
+        $uri = $q->gravatar_uri;
+        $cache->set( $key => $uri, $expires );
+    }
+    $c->res->header( "Cache-Control" => "max-age=${expires}" );
+    $c->redirect($uri);
+}
+
+sub keep_session :Private {
     my ($self, $c) = @_;
 
-    my $as = $c->stash->{reset}
-           ? undef
-           : $c->stash->{answer_sheet};
-    if ($as) {
-        $c->res->cookies->{ $c->config->{cookie_name} } = {
-            value => $as->serialize,
-        };
-    }
-    else {
-        $c->res->cookies->{ $c->config->{cookie_name} } = {
-            value   => "",
-            expires => "-1d",
-        };
-    }
-    $c->forward("/end");
+    my $as = $c->stash->{answer_sheet}
+        or return;
+    $c->res->cookies->{ $c->config->{cookie_name} } = {
+        value => $as->serialize,
+    };
+}
+
+sub reset_session :Private {
+    my ($self, $c) = @_;
+
+    $c->res->cookies->{ $c->config->{cookie_name} } = {
+        value   => "",
+        expires => "-1y",
+    };
 }
 
 
