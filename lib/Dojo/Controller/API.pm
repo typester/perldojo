@@ -21,10 +21,10 @@ sub star :Local :Args {
     my $star = "";
     given ( $c->req->method ) {
         when ("POST") {
-            $star = models("Storage")->add_star( $q->name );
+            $star = models("Storage")->add_star($q);
         }
         when ("GET") {
-            $star = models("Storage")->get_star( $q->name );
+            $star = models("Storage")->get_star($q);
         }
         when ("HEAD") {
         }

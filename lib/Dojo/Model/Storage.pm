@@ -3,6 +3,7 @@ use utf8;
 use Any::Moose;
 use Carp;
 use Dojo::Models;
+use Scalar::Util qw/ blessed /;
 
 has backend => (
     is => 'rw',
@@ -13,13 +14,33 @@ no Any::Moose;
 sub set_result {
     my ($self, $key, $correct) = @_;
 
-    my $backend = $self->backend;
-    my $answered = $backend->incr("answered_${key}", 1)
-                   || $backend->set("answered_${key}", 1);
+    my $author;
+    if ( ref $key &&  blessed($key) && $key->can("name") ) {
+        $author = $key->author_name;
+        $key    = $key->name;
+    }
 
-    my $corrected = $correct ? $backend->incr("corrected_${key}")
-                               || $backend->set("corrected_${key}", 1)
-                             : $backend->get("corrected_${key}");
+    my $backend = $self->backend;
+    my $answered = $backend->incr("answered:${key}", 1)
+                   || $backend->set("answered:${key}", 1);
+
+    my $corrected = $correct ? $backend->incr("corrected:${key}")
+                               || $backend->set("corrected:${key}", 1)
+                             : $backend->get("corrected:${key}");
+    my $p = sprintf("%.1f", $corrected / $answered * 100);
+    $backend->set( "percentage:${key}" => $p );
+
+    if ($author) {
+        my $aa = $backend->incr("author_answered:${author}", 1)
+                 || $backend->set("author_answered:${author}", 1);
+        my $ac = $correct ? $backend->incr("author_corrected:${author}", 1)
+                            || $backend->set("author_corrected:${author}", 1)
+                          : $backend->get("author_corrected:${author}");
+        $backend->set(
+            "author_percentage:${author}" => sprintf("%.1f", $ac / $aa * 100),
+        );
+    }
+
     return {
         answered  => $answered  || 0,
         corrected => $corrected || 0,
@@ -28,22 +49,43 @@ sub set_result {
 
 sub get_result {
     my ($self, $key) = @_;
-    my $result = $self->backend->get_multi("answered_${key}", "corrected_${key}");
+
+    $key = $key->name
+        if blessed $key && $key->can("name");
+
+    my $result = $self->backend->get_multi("answered:${key}", "corrected:${key}");
     return {
-        answered  => $result->{"answered_${key}"}  || 0,
-        corrected => $result->{"corrected_${key}"} || 0,
+        answered  => $result->{"answered:${key}"}  || 0,
+        corrected => $result->{"corrected:${key}"} || 0,
     };
 }
 
 sub add_star {
     my ($self, $key) = @_;
-    $self->backend->incr("star_${key}", 1)
-        or $self->backend->set("star_${key}", 1);
+
+    my $author;
+    if ( blessed $key && $key->can("name") ) {
+        $author = $key->author_name;
+        $key    = $key->name;
+    }
+
+    if ($author) {
+        $self->backend->incr("author_star:${key}", 1)
+            or $self->backend->set("author_star:${key}", 1);
+    }
+
+    $self->backend->incr("star:${key}", 1)
+        or $self->backend->set("star:${key}", 1);
+
 }
 
 sub get_star {
     my ($self, $key) = @_;
-    $self->backend->get("star_${key}") || 0;
+
+    $key = $key->name
+        if blessed $key && $key->can("name");
+
+    $self->backend->get("star:${key}") || 0;
 }
 
 1;
