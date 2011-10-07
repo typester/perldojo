@@ -437,9 +437,18 @@ hr { display: none; }
 }
 
 .point{
-	padding-left:200px;
+	float: right;
+	padding-top: 5px;
+	padding-left: 10px;
 	padding-right:10px;
 	font-size:18px;
+	line-height: -5px;
+}
+
+.point .pt {
+	padding-left:5px;
+	padding-right:10px;
+	font-size:14px;
 	line-height: -5px;
 }
 

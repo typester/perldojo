@@ -40,22 +40,22 @@
   <!-- [ MAIN-CONTENT-AREA ] -->
   <div class="ranking">
     <h2 class="rankingHeader">良問出題ランキング</h2>
-    <p class="rank1"><img src="img/userIcon.jpg"><span class="username"><a href="">ユーザー名</a></span><span class="point">100</span>pt</p>
-    <p class="rank2"><img src="img/userIcon.jpg"><span class="username"><a href="">ユーザー名</a></span><span class="point">100</span>pt</p>
-    <p class="rank3"><img src="img/userIcon.jpg"><span class="username"><a href="">ユーザー名</a></span><span class="point">100</span>pt</p>
-    <p class="rank4"><img src="img/userIcon.jpg"><span class="username"><a href="">ユーザー名</a></span><span class="point">100</span>pt</p>
-    <p class="rank5"><img src="img/userIcon.jpg"><span class="username"><a href="">ユーザー名</a></span><span class="point">100</span>pt</p>
+? my $n = 0;
+? for my $author (@{ $c->stash->{by_s} }) {
+?   $n++;
+    <p class="rank<?= $n ?>"><img src="<?= $c->uri_for('/icon', $author->{name}) ?>" width="42" height="42"><span class="username"><?= $author->{name} ?></a></span><span class="point"><?= $author->{value} ?><span class="pt">pt</span></span></p>
+? }
     <!-- / #main --></div>
   <!-- [ MAIN-CONTENT-AREA ] -->
 
   <!-- [ SUB-CONTENT-AREA ] -->
   <div class="ranking right">
     <h2 class="rankingHeader">難問出題ランキング</h2>
-    <p class="rank1"><img src="img/userIcon.jpg"><span class="username"><a href="">ユーザー名</a></span><span class="point">100</span>pt</p>
-    <p class="rank2"><img src="img/userIcon.jpg"><span class="username"><a href="">ユーザー名</a></span><span class="point">100</span>pt</p>
-    <p class="rank3"><img src="img/userIcon.jpg"><span class="username"><a href="">ユーザー名</a></span><span class="point">100</span>pt</p>
-    <p class="rank4"><img src="img/userIcon.jpg"><span class="username"><a href="">ユーザー名</a></span><span class="point">100</span>pt</p>
-    <p class="rank5"><img src="img/userIcon.jpg"><span class="username"><a href="">ユーザー名</a></span><span class="point">100</span>pt</p>
+? $n = 0;
+? for my $author (@{ $c->stash->{by_p} }) {
+?   $n++;
+    <p class="rank<?= $n ?>"><img src="<?= $c->uri_for('/icon', $author->{name}) ?>" width="42" height="42"><span class="username"><a href=""><?= $author->{name} ?></a></span><span class="point"><?= 100 - $author->{value} ?><span class="pt">pt</span></span></p>
+? }
     <!-- / #sub --></div>
   <!-- / [ SUB-CONTENT-AREA ] -->
 

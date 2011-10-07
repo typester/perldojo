@@ -16,6 +16,7 @@ sub setup_app (%) {
 
     my $memcached = setup_memcached();
 
+    $dojo->config->{storage}->{backend}->{class} = "Cache::Memcached::Fast";
     $dojo->config->{storage}->{backend}->{args}->{servers}
         = [ "127.0.0.1:" . $memcached->port ];
     $dojo->config->{storage}->{__backend} = $memcached; # keep instance

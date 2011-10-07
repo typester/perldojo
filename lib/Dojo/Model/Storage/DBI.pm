@@ -60,6 +60,47 @@ sub get_multi {
     $result;
 }
 
+sub get_authors_by_star {
+    my $self  = shift;
+    my $limit = shift;
+
+    $self->_get_authors_by(
+        order => "value + 0 DESC, id",
+        key   => "author_star:%",
+        limit => $limit,
+    );
+}
+
+sub get_authors_by_percentage {
+    my $self  = shift;
+    my $limit = shift;
+
+    $self->_get_authors_by(
+        order => "value + 0, id",
+        key   => "author_percentage:%",
+        limit => $limit,
+    );
+}
+
+sub _get_authors_by {
+    my $self = shift;
+    my %args = @_;
+
+    my $sth = $self->dbh->prepare(
+        "SELECT id, value FROM data WHERE id LIKE ? ORDER BY $args{order} LIMIT ?"
+    );
+    $sth->execute($args{key}, $args{limit});
+    my @result;
+    while ( my $r = $sth->fetchrow_arrayref ) {
+        my (undef, $name) = split ":", $r->[0], 2;
+        push @result, {
+            name  => $name,
+            value => $r->[1],
+        };
+    }
+    return wantarray ? @result : \@result;
+}
+
 sub schema {
     my $class = shift;
     my $sql =<<END;

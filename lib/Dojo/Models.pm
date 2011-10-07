@@ -3,6 +3,7 @@ use strict;
 use warnings;
 use Ark::Models '-base';
 use Carp;
+use Dojo::Model::Gravatar;
 
 register Questions => sub {
     my ($self) = @_;

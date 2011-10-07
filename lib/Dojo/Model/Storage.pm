@@ -32,9 +32,11 @@ sub set_result {
 
     if ($author) {
         my $aa = $backend->incr("author_answered:${author}", 1)
-                 || $backend->set("author_answered:${author}", 1);
+                 || $backend->set("author_answered:${author}", 1)
+                 || 1;
         my $ac = $correct ? $backend->incr("author_corrected:${author}", 1)
                             || $backend->set("author_corrected:${author}", 1)
+                            || 1
                           : $backend->get("author_corrected:${author}");
         $backend->set(
             "author_percentage:${author}" => sprintf("%.1f", $ac / $aa * 100),
@@ -70,8 +72,8 @@ sub add_star {
     }
 
     if ($author) {
-        $self->backend->incr("author_star:${key}", 1)
-            or $self->backend->set("author_star:${key}", 1);
+        $self->backend->incr("author_star:${author}", 1)
+            or $self->backend->set("author_star:${author}", 1);
     }
 
     $self->backend->incr("star:${key}", 1)
@@ -86,6 +88,43 @@ sub get_star {
         if blessed $key && $key->can("name");
 
     $self->backend->get("star:${key}") || 0;
+}
+
+sub get_authors_by_percentage {
+    my $self = shift;
+
+    my $code = $self->backend->can('get_authors_by_percentage');
+    $code ? $code->($self->backend, @_)
+          : [];
+}
+
+sub get_authors_by_star {
+    my $self = shift;
+
+    my $code = $self->backend->can('get_authors_by_star');
+    $code ? $code->($self->backend, @_)
+          : [];
+}
+
+sub get_icon {
+    my $self = shift;
+    my $q    = shift;
+    $self->backend->get("gravatar_uri:" . $q->name);
+}
+
+sub get_author_icon {
+    my $self = shift;
+    my $name = shift;
+    $self->backend->get("author_gravatar_uri:" . $name);
+}
+
+sub set_icon {
+    my $self = shift;
+    my $q    = shift;
+    my $uri  = shift;
+
+    $self->backend->set("gravatar_uri:" . $q->name => $uri);
+    $self->backend->set("author_gravatar_uri:" . $q->author_name => $uri);
 }
 
 1;

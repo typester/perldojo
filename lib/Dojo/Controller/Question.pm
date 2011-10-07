@@ -116,15 +116,14 @@ sub icon :Local :Args {
         $c->log->error("cannot load question: $name $@");
         $c->detach('/default');
     }
-    my $cache   = models("Cache");
-    my $expires = $c->config->{cache}->{expires} || 0;
-    my $key     = "gravatar_uri:" . $q->name;
-    my $uri     = $cache->get($key);
+
+    my $uri = models("Storage")->get_icon($q);
     unless ($uri) {
         $uri = $q->gravatar_uri;
-        $cache->set( $key => $uri, $expires );
+        $c->log->info("set gravatar uri: %s", $uri);
+        models("Storage")->set_icon($q => $uri);
     }
-    $c->res->header( "Cache-Control" => "max-age=${expires}" );
+    $c->res->header( "Cache-Control" => "max-age=86400" );
     $c->redirect($uri);
 }
 

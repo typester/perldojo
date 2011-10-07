@@ -13,6 +13,11 @@ sub ua {
     $UA ||= Furl->new;
 }
 
+sub default {
+    "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm";
+}
+
+
 sub gravatar_uri {
     my $class  = shift;
     my $author = shift;
@@ -34,7 +39,7 @@ sub gravatar_uri {
         }
     }
     else {
-        return "http://www.gravatar.com/avatar/00000000000000000000000000000000?d=mm";
+        return default();
     }
 }
 
