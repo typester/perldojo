@@ -20,7 +20,9 @@ my $dbh = DBI->connect( $mysqld->dsn( dbname => "test" ) );
 $dbh->do( Dojo::Model::Storage::DBI->schema );
 
 my $s = Dojo::Model::Storage->new(
-    backend => Dojo::Model::Storage::DBI->new( dbh => $dbh ),
+    backend => Dojo::Model::Storage::DBI->new(
+        connect_info => [ $mysqld->dsn( dbname => "test" ) ]
+    ),
 );
 isa_ok $s, 'Dojo::Model::Storage';
 

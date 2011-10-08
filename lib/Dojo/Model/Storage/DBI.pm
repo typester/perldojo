@@ -3,9 +3,20 @@ package Dojo::Model::Storage::DBI;
 use strict;
 use warnings;
 use Any::Moose;
+use DBI;
+
+has connect_info => (
+    is  => "rw",
+    isa => "ArrayRef",
+);
 
 has dbh => (
-    is => "rw",
+    is      => "rw",
+    lazy    => 1,
+    default => sub {
+        my $self = shift;
+        DBI->connect( @{ $self->connect_info } );
+    },
 );
 
 sub incr {
