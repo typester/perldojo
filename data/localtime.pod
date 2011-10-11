@@ -1,0 +1,59 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+    my $t = localtime();
+    print $t;
+
+を実行すると、 C<Tue Oct 11 17:38:53 2011> と出力された。このコードがもし、
+
+    my ($t) = localtime();
+    print $t;
+
+だったときの出力は次のうちどれか。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+Tue Oct 11 17:38:53 2011
+
+=item 2.
+
+1318322333
+
+=item 3.
+
+53
+
+=item 4.
+
+53381711911122830
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+Perl は空気を読む言語として有名です。日常会話では、同じ単語が話のコンテキストによって違う意味になったりしますが、Perl でもそのように使うコンテキストによって異なる動作をする関数があります。
+
+ビルドインの C<localtime> 関数もそのように動作をする関数の一つで、これはスカラーコンテキストで呼ばれると C<ctime(3)> の出力を返します。（これがこの問題では Tue Oct 11 17:38:53 2011 となります）
+
+しかし、リストコンテキストで呼ぶと、
+
+    my ($sec,$min,$hour,$mday,$mon,$year,$wday,$yday,$isdst) = localtime();
+
+というように時刻を9つのエレメントに分けた配列を返します。
+この問題では C<my ($t) = ...> というように配列の先頭だけをうけとっていますから、C<$sec> だけをうけとっていることになるので、秒数である 53 が出力されます。
+
+=head1 AUTHOR
+
+Daisuke Murase
+http://github.com/typester
+
+=cut
