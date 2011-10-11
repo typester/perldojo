@@ -1,0 +1,55 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+Perl 5.10 以降で
+
+  use feature "switch";
+
+とした場合、使えるようになる構文は何か。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+given
+
+=item 2.
+
+switch
+
+=item 3.
+
+break
+
+=back
+
+=head1 ANSWER
+
+1
+
+=head1 EXPLANATION
+
+5.10 から given when 構文がサポートされました。
+
+使用するためには C<use feature "switch";> とします。
+
+キーワード given と when は他の言語での switch および case と 同様のものです。
+
+    given($_) {
+        when (/^abc/) { $abc = 1; }
+        when (/^def/) { $def = 1; }
+        when (/^xyz/) { $xyz = 1; }
+        default       { $nothing = 1; }
+    }
+
+Perl-5.8 から 5.12 まで標準モジュールに含まれていた Switch.pm は、5.14 から標準モジュールではなくなっています。
+
+=head1 AUTHOR
+
+fujiwara
+http://github.com/fujiwara
+
+=cut
