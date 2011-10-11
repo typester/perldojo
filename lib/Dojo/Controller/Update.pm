@@ -22,6 +22,7 @@ sub index :Path :Args(1) {
           && system(qw| git merge github/master |) == 0;
 
     if ($ok) {
+        $c->log->info("update ok!");
         $c->res->body("ok");
     }
     else {
