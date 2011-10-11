@@ -22,7 +22,8 @@ sub set_result {
 
     my $backend = $self->backend;
     my $answered = $backend->incr("answered:${key}", 1)
-                   || $backend->set("answered:${key}", 1);
+                   || $backend->set("answered:${key}", 1)
+                   || 1;
 
     my $corrected = $correct ? $backend->incr("corrected:${key}")
                                || $backend->set("corrected:${key}", 1)
