@@ -1,0 +1,46 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+次のコードの出力は？
+
+    use utf8;
+    
+    my $hello = 'こんにちは';
+    print length($hello);
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+10
+
+=item 2.
+
+5
+
+=item 3.
+
+15
+
+=back
+
+=head1 ANSWER
+
+2
+
+=head1 EXPLANATION
+
+L<utf8> プラグマが有効になっていると文字列の長さは utf-8 での文字の数と一致しますから、5 が正解です。
+
+utf8 プラグマを使用していない場合は C<length> はバイト数を返します。
+この場合には 15 (utf-8の場合) になります。
+
+=head1 AUTHOR
+
+Daisuke Murase
+http://github.com/typester
+
+=cut
