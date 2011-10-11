@@ -1,0 +1,47 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+以下のコードはどのような出力になるでしょうか。
+
+    use utf8;
+    use Encode;
+    
+    sub こんにちは {
+        print encode_utf8('こんにちは、' . $_[0]);
+    }
+    
+    こんにちは('世界');
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+こんにちは、世界
+
+=item 2.
+
+Illegal declaration of anonymous subroutine
+
+=item 3.
+
+Wide character in print
+
+=back
+
+=head1 ANSWER
+
+1
+
+=head1 EXPLANATION
+
+Perl 5.8 以上では C<use utf8> をすることでパッケージ名や関数名などにもマルチバイト文字列が使用できるようになりますので、この C<こんにちは> という関数は期待通り動作します。
+
+=head1 AUTHOR
+
+Daisuke Murase
+http://github.com/typester
+
+=cut
