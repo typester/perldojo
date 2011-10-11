@@ -11,7 +11,8 @@ sub restore_answer_sheet :Private {
 
     my $as;
     if ( my $serialized = $c->req->cookies->{ $c->config->{cookie_name} } ) {
-        $c->log->debug("cookie found. restore answer_sheet from $serialized");
+        $c->log->debug("cookie found. restore answer_sheet from $serialized")
+            if $c->debug;
         $as = try {
             models("AnswerSheet")->deserialize(
                 serialized => $serialized,
