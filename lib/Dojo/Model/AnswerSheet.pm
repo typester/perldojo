@@ -2,6 +2,7 @@ package Dojo::Model::AnswerSheet;
 use utf8;
 use Any::Moose;
 use Carp;
+use feature "switch";
 
 use Clone qw/ clone /;
 use Storable;
@@ -35,7 +36,23 @@ sub score {
 
 sub rank {
     my $self = shift;
-    int( (99 - $self->score) / 25 ) + 1;
+    given ($self->score) {
+        when (100) {
+            return 1;
+        }
+        when ( 80 <= $_ && $_ < 100 ) {
+            return 2;
+        }
+        when ( 60 <= $_ && $_ < 80 ) {
+            return 3;
+        }
+        when ( 39 <= $_ && $_ < 60 ) {
+            return 4;
+        }
+        default {
+            return 5;
+        }
+    }
 }
 
 sub set_result {
