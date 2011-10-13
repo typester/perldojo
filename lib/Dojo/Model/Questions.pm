@@ -66,7 +66,7 @@ sub _parse_file {
         $pod->section('ANSWER') &&
         $pod->section('AUTHOR') ) {
 
-        (my $key = $file) =~ s!(^@{[ $self->data_dir ]}/|\.pod$)!!g;
+        (my $key = $file) =~ s!(^\Q@{[ $self->data_dir ]}\E/|\.pod$)!!g;
         return ($key, $pod);
     }
 
