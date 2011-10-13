@@ -1,6 +1,8 @@
 #!/usr/bin/env perl
 use strict;
 use warnings;
+no warnings 'uninitialized';
+
 use Text::MicroTemplate;
 use Getopt::Long;
 use utf8;
@@ -14,11 +16,11 @@ GetOptions(
 ) or die "Failed.\n";
 
 
-chomp($author = `git config user.name`)    unless defined $author;
-chomp($github = `git config github.user`)  unless defined $github;
+chomp($author = `git config user.name`)    unless length $author;
+chomp($github = `git config github.user`)  unless length $github;
 
-length($author) or die "git config user.name is missing.\n";
-length($github) or die "git config github.user is missing.\n";
+$author = '[AUTHOR NAME HERE]' unless length $author;
+$github = '[GITHUB URI HERE]'  unless length $author;
 
 my $renderer = Text::MicroTemplate->new(
     template    => do { local $/; <DATA> },
@@ -41,6 +43,9 @@ if(defined $file) {
     else {
         die "File $file exists. Please --force if you are sure.\n";
     }
+}
+else {
+    die "Usage: $0 [--force] [--author=AUTHOR] [--github=GITHUB] NAME\n";
 }
 
 print $renderer->($author, "http://github.com/$github");
