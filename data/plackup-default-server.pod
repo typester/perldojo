@@ -1,0 +1,40 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+plackup で -s オプションを指定しない場合に起動されるデフォルトの HTTP サーバは何？
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+HTTP::Daemon
+
+=item 2.
+
+Net::Server::HTTP
+
+=item 3.
+
+HTTP::Server::PSGI
+
+=item 4.
+
+HTTP::Server::Simple
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+いずれも Perl で HTTP サーバを動作させるためのモジュールですが、Plack に同梱されていて、plackup が PSGI アプリケーションのためにデフォルトで起動するのは HTTP::Server::PSGI です。
+
+=head1 AUTHOR
+
+fujiwara
+https://github.com/fujiwara
