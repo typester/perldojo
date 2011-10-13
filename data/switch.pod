@@ -6,7 +6,7 @@ Perl 5.10 以降で
 
   use feature "switch";
 
-とした場合、使えるようになる構文は何か。
+とした場合、使えるようになるキーワードは何か。
 
 =head1 CHOICES
 
@@ -22,7 +22,7 @@ switch
 
 =item 3.
 
-break
+where
 
 =back
 
