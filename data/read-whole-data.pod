@@ -2,13 +2,13 @@
 
 =head1 QUESTION
 
-�ȉ��̓t�@�C�����̃e�L�X�g�S�̂�ǂݍ��ޏ����ł���
+以下はファイル内のテキスト全体を読み込む処理ですが
 
     open my $fh, '<', './inputfile' or die "failed to open: $!";
     my $content = do { HERE };
     print $content;
 
-C<HERE> �ɓ���R�[�h�͎��̂����ǂꂩ�B
+C<HERE> に入るコードは次のうちどれか。
 
 =head1 CHOICES
 
@@ -38,7 +38,7 @@ C<HERE> �ɓ���R�[�h�͎��̂����ǂꂩ�B
 
 =head1 EXPLANATION
 
-C<$/> �� C<$INPUT_RECORD_SEPARATOR> �̕ʖ��ŁA���̓��R�[�h�̃Z�p���[�^�������w�肳��܂��B�ʏ�͉��s�����ɂȂ��Ă��܂����A����𖢎w��Ƃ��t�@�C���S�̂�1���R�[�h���Ĉ������Ńt�@�C���S�̂�ǂݍ��݂܂��B
+C<$/> は C<$INPUT_RECORD_SEPARATOR> の別名で、入力レコードのセパレータ文字が指定されます。通常は改行文字になっていますが、これを未指定としファイル全体を1レコードして扱う事でファイル全体を読み込みます。
 
 =head1 AUTHOR
 
