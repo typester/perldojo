@@ -23,6 +23,14 @@ sub index :Path :Args(1) {
 
     if ($ok) {
         $c->log->info("update ok!");
+        my $pid = $c->path_to("pid");
+        if ($pid && -e $pid) {
+            $c->log->info("sending HUP...");
+            my $pid_number = $pid->slurp;
+            chomp $pid_number;
+            system("kill", "-HUP", $pid_number) == 0
+                or $c->log->error("can't kill ${pid_number}: $!");
+        }
         $c->res->body("ok");
     }
     else {
