@@ -1,0 +1,138 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+配列要素すべてにある値を加算する C<add_to_item($value, \@array)> を実装するとき、以下のうち正しいものはどれでしょう。なお、 C<add_to_items()> は値を返さず、引数の配列の要素を直接変更するものとします。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+    sub add_to_items {
+        my($value, $array_ref) = @_;
+        @{$array_ref} += $value;
+        return;
+    }
+
+=item 2.
+
+    sub add_to_items {
+        my($value, $array_ref) = @_;
+        $_[1] = [ map { $_ + $value } @{$array_ref} ];
+        return;
+    }
+
+=item 3.
+
+    sub add_to_items {
+        my($value, $array_ref) = @_;
+        foreach my $item(@{$array_ref}) {
+            $item += $value;
+        }
+        return;
+    }
+
+=item 4.
+
+    use List::Util qw(reduce);
+    sub add_to_items {
+        my($value, $array_ref) = @_;
+        @{$array_ref} = reduce { $_ + $value } @{$array_ref};
+        return;
+    }
+
+=item 5.
+
+    sub add_to_items {
+        my($value, $array_ref) = @_;
+       
+        my @new_items;
+        foreach my $item(@{$array_ref}) {
+            push @new_items, $item + $value;
+        }
+        $array_ref = \@new_items;
+        return;
+    }
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+3番が正解です。C<foreach> で参照する要素はエイリアスになっているので、直接変更できるのです。
+
+その他の不正解の選択肢については以下のように修正すれば正しくなります。ただし効率の面では C<foreach> を使用する3番がベストです。
+
+=over
+
+=item 1.
+
+    sub add_to_items {
+        my($value, $array_ref) = @_;
+        # WRONG: @{$array_ref} += $value;
+        # 一つ一つ加算する以外の方法はない
+        $_ += $value for @{$array_ref}; # OK
+        return;
+    }
+
+=item 2.
+
+    sub add_to_items {
+        my($value, $array_ref) = @_;
+        # WRONG: $_[1] = [ map { $_ + $value } @{$array_ref} ];
+        # $_[1]を直接書き換えても引数の配列は変更されない
+        @{$array_ref} = map { $_ + $value } @{$array_ref}; # OK
+        return;
+    }
+
+=item 3.
+
+    # 正解
+    sub add_to_items {
+        my($value, $array_ref) = @_;
+        foreach my $item(@{$array_ref}) {
+            $item += $value;
+        }
+        return;
+    }
+
+=item 4.
+
+    use List::Util qw(reduce);
+    sub add_to_items {
+        my($value, $array_ref) = @_;
+        # WRONG: @{$array_ref} = reduce { $_ + $value } @{$array_ref};
+        # s/reduce/map/ならば2.と等しくなり正しい
+        @{$array_ref} = map { $_ + $value } @{$array_ref}; # OK
+        return;
+    }
+
+=item 5.
+
+    sub add_to_items {
+        my($value, $array_ref) = @_;
+       
+        my @new_items;
+        foreach my $item(@{$array_ref}) {
+            push @new_items, $item + $value;
+        }
+        # $array_refを書き換えても引数の配列は変化しない
+        # WRONG: $array_ref = \@new_items;
+        @{$array_ref} = @new_items; # OK
+        return;
+    }
+
+=back
+
+=head1 AUTHOR
+
+Fuji Goro
+http://github.com/gfx
+
+=cut
