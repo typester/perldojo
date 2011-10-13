@@ -68,10 +68,16 @@ sub set_current_question {
     my $self = shift;
     my $name = shift;
     my $n = 0;
+    my $found;
     for my $q (@{ $self->questions }) {
         $n++;
-        $self->current($n) and last if $q->name eq $name;
+        if ($q->name eq $name) {
+            $self->current($n);
+            $found = 1;
+            last;
+        }
     }
+    return unless $found;
     $self->current_question;
 }
 

@@ -46,9 +46,18 @@ sub question :Path :Args {
     my $as   = $c->forward("restore_answer_sheet");
     my $name = join "/", @args;
 
-    my $q = $as ? $as->set_current_question($name)
-                : eval { models('Questions')->get($name) };
-
+    my $q;
+    if ($as) {
+        $q = $as->set_current_question($name);
+    }
+    unless ($q) {
+        eval {
+            $q = models('Questions')->get($name);
+            undef  $as;
+            delete $c->stash->{answer_sheet};
+            $c->log->info("remove session.");
+        };
+    }
     if (!$q || $@) {
         $c->log->error("cannot load question: $name $@");
         $c->stash->{reset} = 1;
