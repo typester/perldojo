@@ -28,7 +28,7 @@ cpan (バックエンドはCPAN.pm) コマンドやcpanpコマンド (バック�
 
 =item 5.
 
-TPF(I<The Perl Foundation>)が運営する I<cpan market> というウェブサイトの愛称。マーケットという名前ではあるが何かを販売しているわけではなく、 CPAN Author へ簡単に寄付するためのシステムである。
+TPF(I<The Perl Foundation>)が運営する I<cpan market> というウェブサイトの愛称。マーケットという名前ではあるが何かを販売しているわけではなく、 CPAN Author へ寄付するためのシステムである。
 
 =back
 
