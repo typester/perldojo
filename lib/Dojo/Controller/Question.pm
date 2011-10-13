@@ -3,6 +3,7 @@ use Ark 'Controller';
 
 use Try::Tiny;
 use Dojo::Models;
+use Digest::MD5 qw/ md5_hex /;
 
 sub auto :Private { 1 }
 
@@ -102,7 +103,26 @@ sub question_POST :Private {
 }
 
 sub result :Local :Args(1) {
-    my ($self, $c, $serialized) = @_;
+    my ($self, $c, $arg) = @_;
+
+    my $serialized;
+    if ( $arg =~ /^[0-9a-fA-F]{32}$/ ) {
+        $c->log->info("get result $arg");
+        $serialized = models("Storage")->get("$arg");
+    }
+    else {
+        my $md5 = md5_hex($arg);
+        my $set = models("Storage")->set( $md5 => "$arg" );
+        if ($set) {
+            $c->redirect_and_detach(
+                $c->uri_for("/question/result/", $md5)
+            );
+        }
+        else {
+            $c->log->error("Can't set $md5 to storage");
+            $serialized = $arg;
+        }
+    }
     my $as = try {
         models("AnswerSheet")->deserialize(
             serialized => $serialized,

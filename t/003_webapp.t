@@ -105,6 +105,15 @@ test_psgi $app, sub {
         last QUESTIONS if $next_uri =~ /result/ || $break;
     } # end of QUESTIONS
 
+    subtest result_get_redirect => sub {
+        note "GET $next_uri";
+        my $res = $cb->( GET $next_uri,
+                         Cookie => "dojostate=$sid" );
+        is $res->code => 302, "status 302";
+        $next_uri = $res->header("Location") . "";
+        like $next_uri => qr{/result/[0-9a-fA-F]{32}$};
+    };
+
     subtest result_get => sub {
         note "GET $next_uri";
         my $res = $cb->( GET $next_uri,
@@ -120,8 +129,8 @@ test_psgi $app, sub {
             ok $html;
             note $html;
         }
-
     };
+
 };
 
 done_testing;

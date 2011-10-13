@@ -135,4 +135,14 @@ sub set_icon {
     $self->backend->set("author_github_uri:"   . $q->author_name => $q->author_uri);
 }
 
+sub set {
+    my $self = shift;
+    $self->backend->set(@_);
+}
+
+sub get {
+    my $self = shift;
+    $self->backend->get(@_);
+}
+
 1;
