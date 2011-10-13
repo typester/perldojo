@@ -1,7 +1,7 @@
 use inc::Module::Install;
 name 'Dojo';
 all_from 'lib/Dojo.pm';
-readme_from 'lib/Dojo.pm';
+#readme_from 'lib/Dojo.pm';
 
 perl_version '5.008';
 

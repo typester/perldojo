@@ -5,3 +5,7 @@ blib/
 pm_to_blib
 action.cache
 config_local.pl
+MYMETA.*
+META.*
+Makefile
+
