@@ -1,4 +1,5 @@
 ? extends 'common/base';
+? my $storage = $c->stash->{storage};
 
 ? block content => sub {
 <div id="container">
@@ -43,7 +44,7 @@
 ? my $n = 0;
 ? for my $author (@{ $c->stash->{by_s} }) {
 ?   $n++;
-    <p class="rank<?= $n ?>"><img src="<?= $c->uri_for('/icon', $author->{name}) ?>" width="42" height="42"><span class="username"><?= $author->{name} ?></a></span><span class="point"><?= $author->{value} ?><span class="pt">pt</span></span></p>
+    <p class="rank<?= $n ?>"><img src="<?= $c->uri_for('/icon', $author->{name}) ?>" width="42" height="42"><span class="username"><a href="<?= $storage->get_author_uri($author->{name}) ?>"><?= $author->{name} ?></a></span><span class="point"><?= $author->{value} ?><span class="pt">pt</span></span></p>
 ? }
     <!-- / #main --></div>
   <!-- [ MAIN-CONTENT-AREA ] -->
@@ -54,7 +55,7 @@
 ? $n = 0;
 ? for my $author (@{ $c->stash->{by_p} }) {
 ?   $n++;
-    <p class="rank<?= $n ?>"><img src="<?= $c->uri_for('/icon', $author->{name}) ?>" width="42" height="42"><span class="username"><a href=""><?= $author->{name} ?></a></span><span class="point"><?= 100 - $author->{value} ?><span class="pt">pt</span></span></p>
+    <p class="rank<?= $n ?>"><img src="<?= $c->uri_for('/icon', $author->{name}) ?>" width="42" height="42"><span class="username"><a href="<?= $storage->get_author_uri($author->{name}) ?>"><?= $author->{name} ?></a></span><span class="point"><?= 100 - $author->{value} ?><span class="pt">pt</span></span></p>
 ? }
     <!-- / #sub --></div>
   <!-- / [ SUB-CONTENT-AREA ] -->

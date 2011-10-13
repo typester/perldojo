@@ -3,6 +3,7 @@
 ? my $q  = $c->stash->{q};
 ? my $as = $c->stash->{answer_sheet};
 ? my $rank = $as->rank;
+? my $storage = $c->stash->{storage};
 
 ? block content => sub {
 
@@ -46,7 +47,7 @@
             <p class="question">【<a href="/question/<?= $q->name ?>">問題を見る</a>】</p>
             <p class="author">by
               <img src="<?= $c->uri_for('/question/icon', $q->name) ?>" width="20" height="20" alt="">
-              <?= $q->author_name ?>
+              <a target="_blank" href="<?= $q->author_uri ?>"><?= $q->author_name ?></a>
           </li>
 ? }
         </ul>

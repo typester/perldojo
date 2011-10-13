@@ -2,6 +2,11 @@ package Dojo::Controller;
 use Ark 'Controller';
 use Dojo::Models;
 
+sub auto :Private {
+    my ($self, $c) = @_;
+    $c->stash->{storage} = models("Storage");
+}
+
 sub default :Path :Args {
     my ($self, $c) = @_;
     $c->res->status(404);

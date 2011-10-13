@@ -119,6 +119,12 @@ sub get_author_icon {
     $self->backend->get("author_gravatar_uri:" . $name);
 }
 
+sub get_author_uri {
+    my $self = shift;
+    my $name = shift;
+    $self->backend->get("author_github_uri:" . $name);
+}
+
 sub set_icon {
     my $self = shift;
     my $q    = shift;
@@ -126,6 +132,7 @@ sub set_icon {
 
     $self->backend->set("gravatar_uri:" . $q->name => $uri);
     $self->backend->set("author_gravatar_uri:" . $q->author_name => $uri);
+    $self->backend->set("author_github_uri:"   . $q->author_name => $q->author_uri);
 }
 
 1;

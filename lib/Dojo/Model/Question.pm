@@ -94,6 +94,12 @@ has author_name => (
     default => \&build_author_name,
 );
 
+has author_uri => (
+    is      => "rw",
+    lazy    => 1,
+    default => \&build_author_uri,
+);
+
 no Any::Moose;
 
 sub build_author_name {
@@ -107,6 +113,15 @@ sub build_author_name {
     $name =~ s{\A\s+}{}mg;
     $name =~ s{\s+\z}{}mg;
     $name;
+}
+
+sub build_author_uri {
+    my $self   = shift;
+    my $author = $self->author;
+    if ($author =~ m{(https?://github\.com/\w+)}) {
+        return $1;
+    }
+    return;
 }
 
 __PACKAGE__->meta->make_immutable;
