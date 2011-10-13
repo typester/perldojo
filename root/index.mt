@@ -59,7 +59,7 @@
     <!-- / #sub --></div>
   <!-- / [ SUB-CONTENT-AREA ] -->
 
-  <p class="entrybtn"><a href=""><img src="img/btn_entry_02.png"></a></p>
+  <p class="entrybtn"><a href="https://github.com/kayac/perldojo/blob/master/README.md#files"><img src="img/btn_entry_02.png"></a></p>
 
   <div class="socialTool">
     <div class="blockStream">
