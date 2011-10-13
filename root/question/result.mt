@@ -1,5 +1,5 @@
 ? extends 'common/base';
-
+? use List::Util qw/ max /;
 ? my $q  = $c->stash->{q};
 ? my $as = $c->stash->{answer_sheet};
 ? my $rank = $as->rank;
@@ -22,7 +22,7 @@
       <div class="blockResultHeader">
         <p><?= $as->total ?>問中<?= $as->corrects ?>問正解</p>
         <p class="score"><?= $as->score ?><span class="unit">点</span></p>
-        <p class="rank"><img src="/img/exam/img_rank_<?= sprintf('%02d', $as->rank) ?>.png" width="132" height="132" alt=""></p>
+        <p class="rank"><img src="/img/exam/img_rank_<?= sprintf('%02d', $rank) ?>.png" width="132" height="132" alt=""></p>
       </div>
       <div class="blockResultComment">
         <p>
