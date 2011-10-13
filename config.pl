@@ -4,6 +4,7 @@ return +{
     cookie_name => "dojostate",
     storage => {
         backend => {
+            class => "Cache::Memcached::Fast",
         },
     },
 };
