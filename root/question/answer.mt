@@ -27,7 +27,7 @@
     <p class="message">残念！</p>
 ? }
   </div>
-    <h3 class="ttlStyle2 answerResult">正解は <?= encoded_string $q->answer ?> でした</h3>
+    <h3 class="ttlStyle2 answerResult">正解は 「<?= encoded_string $q->answer ?> 」でした</h3>
     <h4 class="ttlStyle3 answerDescription">解説</h4>
     <?= encoded_string $q->explanation ?>
 
