@@ -1,0 +1,53 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+B<cpanm> とは何でしょう？
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+I<cpan module> を意味するユーティリティコマンド。モジュールがインストールされているかどうかや、インストールされているモジュールのバージョンなどを表示する。
+
+=item 2.
+
+I<cpan meta> を意味するユーティリティコマンド。モジュールのバージョンや作者、リポジトリ、ライセンスなどのメタデータを調べることができる。
+
+=item 3.
+
+複数のバージョンのCPANモジュールをインストールするための I<cpan multiplexer> と呼ばれるパッケージマネージャ。バックエンドはCPAN::Multiplexerであり、cpanmコマンドはCPAN::Multiplexerのレイアウトに従ったモジュールのインストーラである。
+
+=item 4.
+
+CPANPLUSのアンチテーゼとして I<cpan minus> から名付けられたCPANモジュールのインストーラコマンド。
+cpan (バックエンドはCPAN.pm) コマンドやcpanpコマンド (バックエンドはCPANPLUS.pm) よりも高速かつ省メモリで動作する。
+
+=item 5.
+
+TPF(I<The Perl Foundation>)が運営する I<cpan market> というウェブサイトの愛称。マーケットという名前ではあるが何かを販売しているわけではなく、 CPAN Author へ簡単に寄付するためのシステムである。
+
+=back
+
+=head1 ANSWER
+
+4
+
+=head1 EXPLANATION
+
+L<https://github.com/miyagawa/cpanminus|"cpanm"> はcpanコマンドの軽量版として2010年の春に開発が開始されたパッケージマネージャで、cpanコマンドと比べて使いやすいことから広く使われるようになりました。
+インストールも簡単で、C<http://cpanmin.us>というアドレスで実行ファイルを参照できるため C<< curl-L http://cpanmin.us | perl - App::cpanminus >> というコマンドだけですぐ使い始めることができます。また、perlbrew環境では C<perlbrew install-cpanm> というコマンドで複数のperl共通のcpanmコマンドをインストールすることができます。L<http://d.hatena.ne.jp/tokuhirom/20100716/perlenv|"モダンな Perl の開発環境の構築方法"> も参考にするといいでしょう。
+
+他の選択肢はすべてデタラメなので間違って覚えないでくださいね。
+
+public repository: L<https://github.com/miyagawa/cpanminus>
+
+=head1 AUTHOR
+
+Fuji Goro
+http://github.com/gfx
+
+=cut
