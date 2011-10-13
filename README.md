@@ -22,9 +22,18 @@ https://github.com/kayac/perldojo
  * =head1 EXPLANATION
  * =head1 AUTHOR
 
-その他の要素（たとえば LICENSE 等）は自由に記述していただいてかまいません。
+その他の要素（たとえば LICENSE や SEE ALSO 等）は自由に記述していただいてかまいません。
 
 問題はすべて選択肢形式で、回答を一つ選ばせるタイプにする必要があります。
+
+なお、`tools/new-question.pl` コマンドを使って新しい問題を作成することができます。
+
+    # data/foo.podを作成する
+    $ tools/new-question.pl foo
+
+このとき作者名とgithubのアドレスが自動で埋めこまれますが、これは `git config user.name` と `git config github.user` から自動で取得されるほか、`--author` と `--github` オプションで設定することも出来ます。
+
+    $ tools/new-question.pl --author 'My Name' --github 'myaccount'
 
 ### QUESTION
 
