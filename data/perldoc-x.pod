@@ -1,0 +1,48 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+perldocコマンドについて問題です。以下の選択肢のうち、正しい説明を選択してください。ただしperldocのバージョンは5.10.0付属の3.14_02以降であることとします。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+C<perldoc -f NAME> とすると、NAMEというドキュメントまたはモジュールのファイルパスを表示してくれる。
+
+=item 2.
+
+C<perldoc -k KEYWORD> は C<perlfaq[0-9]> のキーワードを検索する。
+
+=item 3.
+
+C<< perl -wE 'say undef' 2>&1 | perldoc >> のようにしてperlからのエラーメッセージをperldocコマンドに与えると、対応する説明を C<perldiag> から検索してくれる。
+
+=item 4.
+
+C<perldoc -v VAR> は特殊変数VARをC<perlvar>から検索する。
+
+=back
+
+=head1 ANSWER
+
+4
+
+=head1 EXPLANATION
+
+4が正解です。特殊変数はWebでは検索しにくいため、C<perldoc -v> と C<perlvar> は覚えておいたほうがいいでしょう。
+
+1に相当する機能は C<perldoc -l NAME> (ドキュメント優先) ないし C<perldoc -lm NAME> (モジュールファイルのみ対象) です。C<locate>の頭文字だと覚えておくといいでしょう。
+
+2に相当する機能は C<perldoc -q KEYWORD> です。ただしあらかじめ定義されたキーワードのみ対象で全文検索ではないため、役に立つケースは限られています。
+
+3に相当する機能は C<diagnostics> プラグマです。C<perl -Mdiagnostics -wE 'say undef> などとして使います。ただし詳しく説明してくれるのはPerl本体からのメッセージだけです。
+
+=head1 AUTHOR
+
+Fuji Goro
+http://github.com/gfx
+
+=cut
