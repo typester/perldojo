@@ -1,0 +1,64 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+以下のテストにパスするサブルーチン hashem の実装として間違っているものはどれか。
+
+    use strict;
+    use warnings;
+    use Test::More;
+    
+    my %hash = ('foo' => 'bar');
+    my $hashem = { 'foo' => 'bar' };
+    
+    is_deeply( hashem(%hash), $hashem );
+    
+    done_testing;
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+    sub hashem {
+        { @_ }
+    }
+
+=item 2.
+
+    sub hashem {
+        +{ @_ }
+    }
+
+=item 3.
+
+    sub hashem {
+        return { @_ }
+    }
+
+=back
+
+=head1 ANSWER
+
+1
+
+=head1 EXPLANATION
+
+Perl では中かっこを使って無名ハッシュのリファレンスをつくることができます。
+
+    $hashref = {
+        'Adam'  => 'Eve',
+        'Clyde' => 'Bonnie',
+    };
+
+中かっこはブロックを囲うのにも使われるため、中かっこがハッシュリファレンスの開始を意味するのか他の用途で使われているのかが曖昧になってしまう場合があります。中かっこの前に + や return をおくことで、この曖昧さをなくすことができます。
+
+詳しくは L<perlref> リファレンスを作る (3) も参照してください。 L<http://perldoc.jp/docs/perl/5.8.8/perlref.pod>
+
+=head1 AUTHOR
+
+Kensuke Nagae
+http://github.com/kyanny
+
+=cut
