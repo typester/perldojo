@@ -63,7 +63,7 @@
     </div>
     <div>
       <p class="lead">もっといい問題を作れる！というあなたはこちら</p>
-      <p><a href="/" class="btnStyle1 type3">問題を作成する</a></p>
+      <p><a href="https://github.com/kayac/perldojo/blob/master/README.md#files" class="btnStyle1 type3" target="_blank">問題を作成する</a></p>
     </div>
     <!-- / .blockAction --></div>
 
