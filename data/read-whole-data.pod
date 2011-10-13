@@ -43,6 +43,6 @@ C<$/> は C<$INPUT_RECORD_SEPARATOR> の別名で、入力レコードのセパレータ文字が指定
 =head1 AUTHOR
 
 Yasuhiro Matsumoto
-http://github.com/mattn_jp
+http://github.com/mattn
 
 =cut
