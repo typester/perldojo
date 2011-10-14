@@ -20,6 +20,7 @@ requires 'Email::Valid::Loose';
 
 test_requires 'Test::More' => '0.88';
 test_requires 'Test::TCP';
+test_requires 'Test::mysqld';
 test_requires 'pQuery';
 
 tests 't/*.t t/*/*.t';
