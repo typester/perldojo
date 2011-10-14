@@ -1,0 +1,54 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+Perlでは以下のようにしてスカラー変数をopenし、ファイルのように読み書きする機能があります。この機能は一体なんという名前でしょうか。
+
+    open my $fh, '>', \my $buff;
+    print $fh "Hello, world!\n";
+    close $fh;
+    print $buff; # => Hello, world!
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+overload
+
+=item 2.
+
+tie handle
+
+=item 3.
+
+PerlIO
+
+=item 4.
+
+PolymophicIO
+
+=item 5.
+
+IO::Handle
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+これはPerlIOと呼ばれるIOを拡張する機能です。スカラー変数への読み書きは実際にはPerlIO::scalarというモジュールが行なっています。
+
+tie handleを使ったIO::Scalarというモジュールでも同じことは実現できますが、その場合エントリポイントは C<open()> ではなくC<tie()> になります。
+
+=head1 AUTHOR
+
+Fuji Goro
+http://github.com/gfx
+
+=cut
