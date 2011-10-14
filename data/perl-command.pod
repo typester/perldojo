@@ -1,0 +1,56 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+シェル、もしくはコマンドプロンプトで、
+
+    perl
+
+と入力してリターンキーを押した。そのときの挙動として正しいものはどれか。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+何も実行されず、シェルに戻る
+
+=item 2.
+
+入力を待ち受ける状態になる
+
+=item 3.
+
+perl のバージョンが表示される
+
+=item 4.
+
+エラーが表示され、perlコマンドのhelpが表示される
+
+=back
+
+=head1 ANSWER
+
+2
+
+=head1 EXPLANATION
+
+`perl` コマンドは普通、
+
+    perl ./script.pl
+
+などのように perl スクリプトを引数として指定することで、そのスクリプトを実行しますが、
+引数なしで実行すると perl スクリプトを受け付ける状態になります。
+
+`cat` コマンドの挙動みたいなものといえばわかりやすいひともいるかもしれませんね。
+
+`perl` コマンドについての詳細な説明や、その他のオプションについては `perldoc perlrun` を参照ください。
+
+=head1 AUTHOR
+
+Daisuke Murase
+http://github.com/typester
+
+=cut

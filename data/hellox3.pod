@@ -1,0 +1,53 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+以下のスクリプトの出力はどのようになるでしょう。
+
+    print "100" x 3;
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+シンタックスエラー
+
+=item 2.
+
+100100100
+
+=item 3.
+
+300
+
+=item 4.
+
+1003
+
+=item 5.
+
+1000000
+
+=back
+
+=head1 ANSWER
+
+2
+
+=head1 EXPLANATION
+
+`x` 演算子は文字列の繰り返し演算子と呼ばれ、与えられた文字列を指定した回数分繰り返した文字列を返します。
+
+    "Hello" x 3 # => "HelloHelloHello"
+
+したがって、C<"100"> が3度繰り返された C<"100100100"> が正解です。
+
+=head1 AUTHOR
+
+Daisuke Murase
+http://github.com/typester
+
+=cut

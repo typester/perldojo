@@ -1,0 +1,55 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+    my @people = ('Larry', 'Tatsuhiko');
+    $people[0] = undef;
+    delete $people[1];
+
+このコードが実行されたあとの、配列 C<@people> はどのようになっているか、正しいものを選べ。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+要素数は1で、最初の要素には undef が入っている。
+
+=item 2.
+
+配列は空である
+
+=item 3.
+
+要素数2で、どちらも undef が入っている
+
+=item 4.
+
+要素数2で、最初の要素に undef、次の要素には Tatsuhiko がそのまま入っている
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+undef を代入したり、C<delete> 関数を使用しても配列の要素は undef にはなりますがなくなりません。
+
+配列を空にするには
+
+    @people = ();
+
+というように空のリストを代入するのが正しい方法です。
+
+また、配列に対する C<delete> は最近の Perl では deprecated であり推奨されませんし、将来のバージョンでは使えなくなる可能性もありますので、使用を控えた方がいいでしょう。
+
+=head1 AUTHOR
+
+Daisuke Murase
+http://github.com/typester
+
+=cut
