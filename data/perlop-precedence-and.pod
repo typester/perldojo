@@ -1,0 +1,51 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+以下のサブルーチンの戻り値は何か？
+
+    sub test {
+        return q{0} or ( q{a} . q{b} =~ /\Aab\z/ );
+    }
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+    
+    1
+
+=item 2.
+
+    a
+
+=item 3.
+
+    0
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+演算子の優先順位は
+リスト演算子 (右方向に対して) > or演算子
+のため、return q{0}が先に評価され、戻り値は0になります。
+
+ちなみにor演算子を||演算子に変えると
+||演算子 > リスト演算子 (右方向に対して)
+のため、 ( q{a} . q{b} =~ /\Aab\z/ )の結果が戻り値になります。
+.演算子と=~演算子は
+=~ > .
+のため、( q{a} . q{b} =~ /\Aab\z/ )の評価の結果はaになります。
+詳しくは L<http://perldoc.jp/docs/perl/5.8.8/perlop.pod> を参照してください。
+
+=head1 AUTHOR
+
+https://github.com/nakatakeshi
+
+=cut
