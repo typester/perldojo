@@ -2,9 +2,10 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8">
-    <title><? block title => '' ?>PerlDojo</title>
+    <title><? block title => '' ?>Perl道場 PerlエンジニアがつくるPerlエンジニアのための検定試験</title>
 
-    <meta name="keywords" content="">
+    <meta name="keywords" content="Perl,Ruby,JavaScript,プログラマー,カヤック,KAYAC">
+    <meta name="description" content="Perlエンジニア集合！PerlエンジニアがつくるPerlエンジニアのためのPerlが学べる検定試験です。面白法人カヤックプロデュース。出題者も募集中。">
     <meta name="author" content="面白法人カヤック" />
     <meta name="copyright" content="&#169;面白法人カヤック" />
     <meta name="reply-to" content="info&#64;kayac.com" />
