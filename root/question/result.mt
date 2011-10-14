@@ -11,7 +11,7 @@
 
   <!-- [[[ HEADER-AREA ]]] -->
   <div id="examHeader">
-    <h1 class="hidden">Perl道場</h1>
+    <h1><a href="/">Perl道場</a></h1>
     <!-- / #examHeader --></div>
   <!-- / [[[ HEADER-AREA ]]] -->
 
