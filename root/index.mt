@@ -22,7 +22,8 @@
         </li>
         <li class="hatebu"><a href="http://b.hatena.ne.jp/entry/" class="hatena-bookmark-button" data-hatena-bookmark-layout="standard" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;"></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script></li>
         <li class="stumbleupon"><script src="http://www.stumbleupon.com/hostedbadge.php?s=4"></script></li>
-        <li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script></li>
+        <li class="twitter"><a href="https://twitter.com/share" class="twitter-share-button" data-text="門下生募集中！PerlエンジニアがつくるPerlエンジニアのためのPerlの検定試験「Perl道場」入門条件はPerlが好きなこと
+#perldojo" data-count="horizontal">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script></li>
         <li class="plusone"><g:plusone size="medium"></g:plusone></li>
       </ul>
       <!-- / #socialBtn --></div>
