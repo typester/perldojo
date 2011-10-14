@@ -1,0 +1,50 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+    while (defined(my $line = <>)) {
+        print $line;
+    }
+
+このスクリプトを
+
+    perl script.pl foo bar buzz
+
+という引数とともに実行した。スクリプトの挙動として正しいものを選べ。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+foo, bar, buzz という3ファイルの中身をすべて表示する
+
+=item 2.
+
+foo, bar, buzz という3ファイルのそれぞれの1行目だけが表示される
+
+=item 3.
+
+foo bar buzz という文字列が表示される。
+
+=back
+
+=head1 ANSWER
+
+1
+
+=head1 EXPLANATION
+
+C<< <> >> はダイヤモンド演算子と呼ばれ、cat、sed、awk などのような Unix ユーティリティと同じような挙動のスクリプトを書くときに便利に使うことができます。
+
+ダイヤモンド演算子はコマンドライン引数で指定されたファイルをすべて連結した1つの大きなファイルを読み込んでいるように振る舞う特殊な演算子です。
+したがって、foo, bar, buzz という3ファイルの中身をすべて表示する、が正解です。
+
+=head1 AUTHOR
+
+Daisuke Murase
+http://github.com/typester
+
+=cut
