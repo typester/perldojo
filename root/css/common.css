@@ -664,6 +664,11 @@ hr { display: none; }
 	margin-left: 35px;
 }
 
+.examContent .listAnswers li p{
+	padding-right: 0;
+	padding-left: 0;
+}
+
 .examContent .boxAnswer{
 	margin: 30px 0;
 }
