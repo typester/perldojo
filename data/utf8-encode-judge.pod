@@ -1,0 +1,62 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+C<$string>はUTF8フラグ付きの文字列である。この文字列をUTF8を表示できる環境でエラーや warning を出さずに表示したい。正しいものを選べ。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+ print utf8::is_utf8($string) ? Encode::encode($string, 'utf8') : $string;
+
+=item 2.
+
+ if (utf8::is_utf8($string)) {
+     utf8::encode($string);
+ }
+ print $string;
+
+=item 3.
+
+ if (utf8::is_utf8($string)) {
+     utf8::downgrade($string);
+ }
+ print $string;
+
+=item 4.
+
+該当なし
+
+=back
+
+=head1 ANSWER
+
+4
+
+=head1 EXPLANATION
+
+C<$string>に、UTF8フラグが付いていても、その文字列が UTF8でデコードされているかは、C<utf8::is_utf8>では、判断できません。
+例えば、次のようなコードの場合(UTF8で書かれているとする):
+
+ use Encode;
+ no utf8;
+ my $string = 'こんにちは';
+ $string = Encode::decode('latin1', 'こんにちは');
+ print utf8::is_utf8($string), "\n"; # 1
+ print $string, "\n"; # こんにちは (warningはない)
+ print length($string); # 15
+
+latin1 でデコードされているため、UTF8フラグは付いている。ただし、latin1なので、Wide Character にはならず、print しても warning は出ない。
+そして、UTF8でデコードされていないので、文字列の長さは 15 となる。
+なお、この文字列をUTF8フラグがあるからといって、C<Encode::encode('utf8', $string);> を行うと、文字化けしてしまいます。
+
+=head1 AUTHOR
+
+Kato Atsushi 
+http://github.com/ktat
+
+=cut
