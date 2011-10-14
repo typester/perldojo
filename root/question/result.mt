@@ -1,9 +1,21 @@
 ? extends 'common/base';
 ? use List::Util qw/ max /;
+? use URI;
 ? my $q  = $c->stash->{q};
 ? my $as = $c->stash->{answer_sheet};
 ? my $rank = $as->rank;
 ? my $storage = $c->stash->{storage};
+
+? my $tweet_url = URI->new('http://twitter.com/share');
+? my $tweet_text = [
+?     'Perl道場の検定で満点獲得。「Perlを制するものは世界を制す」 #perldojo',
+?     'Perl道場の検定で80点獲った！「能ある鷹は爪を隠す」ってやつだな。 #perldojo',
+?     'Perl道場の検定で60点獲った。復習をして目指せ！偉大なるハッカーへの道！ #perldojo',
+?     'Perl道場の検定で40点。あれ？風邪気味かな？もう一度やってみよう #perldojo',
+?     'Perl道場の検定で20点。俺って、Perlエンジニアだよな？ #perldojo',
+?     'Perl道場の検定で、な、な、なんと0点。気にすんな俺！まだまだ伸びシロがあるってことだ！ #perldojo',
+? ];
+? $tweet_url->query_form( url => $c->req->uri, text => $tweet_text );
 
 ? block content => sub {
 
@@ -54,7 +66,7 @@
           </li>
 ? }
         </ul>
-        <p class="tweet"><a href="/" class="btnStyle1">結果をtweetする</a></p>
+        <p class="tweet"><a href="<?= $tweet_url ?>" class="btnStyle1">結果をtweetする</a></p>
       </div>
       <!-- / .blockResult --></div>
     <!-- / .examContent --></div>
