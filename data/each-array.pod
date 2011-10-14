@@ -43,7 +43,7 @@ Perl 5.12.0 から、組み込み関数 C<each()> に配列を渡すことがで
     foo=0
     bar=1
     hoge=2
-    baz=3
+    fuga=3
 
 =item 4.
 
