@@ -29,7 +29,8 @@
       <!-- / #socialBtn --></div>
     <div class="title">
       <h1 class="hidden">Perl道場</h1>
-      <p>説明がはいります。説明がはいります。説明がはいります。説明がはいります。説明がはいります。説明がはいります。</p>
+      <p>PerlエンジニアがPerlエンジニアのためにつくるPerl検定試験「Perl道場」へようこそ。<br>入門条件はただひとつ。「Perlが好きであること」。
+あのPerlエンジニアが出題した問題に挑んでみよう！出題も受付中！</p>
       <a href="/question"><img src="/img/btn_entry_01.png" width="385" height="153" alt="テストを受ける" class="btn"></a>
     </div>
     <!-- / #headerBg --></div>
