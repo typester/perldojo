@@ -29,6 +29,10 @@ perl のバージョンが表示される
 
 エラーが表示され、perlコマンドのhelpが表示される
 
+=item 5.
+
+Perlの対話環境であるREPLが起動する
+
 =back
 
 =head1 ANSWER
