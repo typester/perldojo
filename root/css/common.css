@@ -215,6 +215,14 @@ hr { display: none; }
 	background: url(/img/exam/img_header_01.png) 0 0 no-repeat;
 }
 
+#examHeader h1 a {
+	position: absolute;
+	width: 150px;
+	height: 40px;
+	top: 25px;
+	left: 55px;
+	opacity: 0;
+}
 
 /* --------------------------------------------------
 	2. Content
