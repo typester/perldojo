@@ -87,6 +87,7 @@
         my($value, $array_ref) = @_;
         # WRONG: $_[1] = [ map { $_ + $value } @{$array_ref} ];
         # $_[1]を直接書き換えても引数の配列は変更されない
+        # 但し、add_to_items($value, $array_ref); のように、配列リファレンスを渡した場合は $array_ref 自体が変更される
         @{$array_ref} = map { $_ + $value } @{$array_ref}; # OK
         return;
     }
