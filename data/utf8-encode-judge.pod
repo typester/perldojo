@@ -3,7 +3,7 @@
 
 =head1 QUESTION
 
-C<$string>はUTF8フラグ付きの文字列である。この文字列をUTF8を表示できる環境でエラーや warning を出さずに表示したい。正しいものを選べ。
+C<$string>はUTF8フラグ付きの文字列である。この文字列をUTF8を表示できる環境でエラーや warning を出さずに文字化けさせずに表示したい。正しいものを選べ。
 
 =head1 CHOICES
 
@@ -51,8 +51,8 @@ C<$string>に、UTF8フラグが付いていても、その文字列が UTF8で�
  print length($string); # 15
 
 latin1 でデコードされているため、UTF8フラグは付いている。ただし、latin1なので、Wide Character にはならず、print しても warning は出ない。
-そして、UTF8でデコードされていないので、文字列の長さは 15 となる。
-なお、この文字列をUTF8フラグがあるからといって、C<Encode::encode('utf8', $string);> を行うと、文字化けしてしまいます。
+UTF8でデコードされていないので、文字列の長さは 15 となる。
+この文字列をUTF8フラグがあるからといって、C<Encode::encode('utf8', $string);> を行うと、文字化けしてしまいます。
 
 =head1 AUTHOR
 
