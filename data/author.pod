@@ -1,0 +1,53 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+Perl の生みの親、設計者は次のうち誰でしょう。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+Yukihiro Matsumoto
+
+=item 2.
+
+Steve Jobs
+
+=item 3.
+
+Larray Wall
+
+=item 4.
+
+Guido van Rossum
+
+=item 5.
+
+Jesse Vincent
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+正解は3の Larry Wall です。
+
+1 の Yukihiro Matsumoto と、4 の Guido van Rossum はそれぞれ、Ruby、 Python の作者です。
+
+2 の Steve Jobs は Apple Computer の創立者ですね。
+
+5 の Jesse Vincent は Perl の開発者の一人で、現在の Perl のメンテナンスを一手に引き受けてくれ、精力的に活動されている方です。
+
+=head1 AUTHOR
+
+Daisuke Murase
+http://github.com/typester
+
+=cut
