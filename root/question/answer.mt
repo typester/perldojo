@@ -53,11 +53,16 @@
               </span>
             </td>
           </tr>
+          <tr>
+            <th scope="row">出題者</th>
+            <td>
+              <p class="author">
+                <img src="<?= $c->uri_for('/question/icon', $q->name) ?>" width="30" height="30" alt="">
+                <?= $q->author_name ?>
+              </p>
+            </td>
+          </tr>
         </table>
-        <p class="author">
-          <img src="<?= $c->uri_for('/question/icon', $q->name) ?>" width="30" height="30" alt="">
-          <?= $q->author_name ?>
-        </p>
       </div>
     </div>
 ? if (!$as) {
