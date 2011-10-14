@@ -18,9 +18,9 @@
     <div>
       <p><?= encoded_string $q->question ?></p>
     </div>
-    <p class="author">
-      <img src="<?= $c->uri_for('/question/icon', $q->name) ?>" width="30" height="30" alt="">
-      <?= $q->author_name ?>
+    <p class="author" style="text-align:right;font-size:11px;">
+      by <?= $q->author_name ?>
+      <img src="<?= $c->uri_for('/question/icon', $q->name) ?>" width="20" height="20" alt="">
     </p>
     <!-- / .examContent --></div>
 
