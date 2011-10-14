@@ -18,6 +18,10 @@
     <div>
       <p><?= encoded_string $q->question ?></p>
     </div>
+    <p class="author">
+      <img src="<?= $c->uri_for('/question/icon', $q->name) ?>" width="30" height="30" alt="">
+      <?= $q->author_name ?>
+    </p>
     <!-- / .examContent --></div>
 
   <div class="examContent group">
