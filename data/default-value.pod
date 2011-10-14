@@ -1,0 +1,76 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+    my $obj = Class->new(%options);
+
+などのようにオブジェクトを生成する際にオプションをわたすようになっているモジュールがあるとします。
+このようなモジュールのコンストラクタでは、C<%options> に何も渡されたなかった場合、以下のようにデフォルト値を使用するようにコーディングするのが一般的です。
+
+    sub new {
+        my ($class, %options) = @_;
+    
+        # 値がなかったらデフォルト値でうめる
+        # ...
+    
+        return bless \%options, $class;
+    }
+
+このデフォルト値を埋める処理で正しくないものは以下のうちどれか。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+    $options{foo} ||= 'default value';
+
+=item 2.
+
+    $options{foo} //= 'default value';
+
+=item 3.
+
+    $options{foo} = defined $options{foo} ? $options{foo} : 'default value';
+
+=item 4.
+
+    $options{foo} = 'default value'
+        unless defined $options{foo};
+
+=back
+
+=head1 ANSWER
+
+1
+
+=head1 EXPLANATION
+
+    $options{foo} ||= 'default value';
+
+は、書き直すと
+
+    $options{foo} = $options{foo} || 'default value';
+
+となりますが、これは真偽チェックしかしていないため、たとえば、
+
+    Class->new( foo => 0 );
+
+とか
+
+    Class->new( foo => '' );
+
+とか、偽になるようなオプションを渡したときに無視されてしまいます。
+
+残りの選択肢は defined チェックをしているので正しく動作します。
+
+Perl 5.10 以降であれば選択肢 2 で使用している defined-or 演算子 C<//> を使うのがスマートでしょう。
+
+=head1 AUTHOR
+
+Daisuke Murase
+http://github.com/typester
+
+=cut
