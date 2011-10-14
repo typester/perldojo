@@ -1,0 +1,51 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+5文字以上の文字列C<$string>の3番目から5番目の文字を削除しようと思います。B<正しくないもの>を選んでください。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+ $string = substr($string, 0, 2) . substr($string, 4);
+
+=item 2.
+
+ $string =~ s{^(.{2}).{3}(.+)$}{$1$2};
+
+=item 3.
+
+ substr($string, 2, 3) = '';
+
+=item 4.
+
+ $string = join "", (split //, $string)[0,1,5 .. length($string)];
+
+=back
+
+=head1 ANSWER
+
+2
+
+=head1 EXPLANATION
+
+2番目は、6文字以上の文字にしかマッチしないので、$string が5文字以下の場合に削除されません。
+
+ $string =~ s{^(.{2}).{3}(.+)$}{$1$2}; # 2文字 + 3文字 + 1文字以上
+
+3番目のように、substr が左辺にある場合、該当個所を右辺で置き換えるすることができますので、問題文とは逆に挿入することもできます。
+
+ my $string = "126";
+ substr($string, 2, 0) = '345';
+ # $string => 123456
+
+=head1 AUTHOR
+
+Kato Atsushi 
+http://github.com/ktat
+
+=cut
