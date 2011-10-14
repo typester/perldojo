@@ -1,0 +1,71 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+この問題はPerl 5.14.0 以上の機能を扱っています。
+
+Perl 5.12.0 から、組み込み関数 C<each()> に配列を渡すことができるようになりました。また、Perl 5.14.0 から C<each()> にリファレンスを渡すことができるようになりました。したがって、 C<each($thing)> はポリモーフィックに動作するようになっています。
+さて、それでは以下のコードはどんな結果になるでしょうか。
+
+    use 5.14.0;
+
+    sub f {
+        my($thing) = @_;
+        while( my($key, $value) = each $thing ) {
+            print "$key=$value\n";
+        }
+    }
+
+    f([
+        foo  => 'bar',
+        hoge => 'fuga',
+    ]);
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+    foo=bar
+    hoge=fuga
+
+=item 2.
+
+    0=foo
+    1=bar
+    2=hoge
+    3=baz
+
+=item 3.
+
+    foo=0
+    bar=1
+    hoge=2
+    baz=3
+
+=item 4.
+
+    ARRAY(0x100803b00)=
+
+=item 5.
+
+なにも表示されない。
+
+=back
+
+=head1 ANSWER
+
+2
+
+=head1 EXPLANATION
+
+C<each($array_ref)> は C<(index, value)> という値をペアで返します。同様に C<keys()> と C<values()> 前述のコードでは C<keys()> と C<values()> はそれぞれ C<(0, 1, 2, 3)> と C<('foo', 'bar', 'hoge', 'fuga')> というリストを返します。
+
+=head1 AUTHOR
+
+Fuji Goro
+http://github.com/gfx
+
+=cut
