@@ -1,0 +1,47 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+ハッシュの要素はどうやって削除すればいいでしょうか。以下の選択肢から正しいものを選んでください。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+    $hash{$name} = undef;
+
+=item 2.
+
+    undef $hash{$name};
+
+=item 3.
+
+    splice %hash, $name;
+
+=item 4.
+
+    delete $hash{$name};
+
+=item 5.
+
+    unlink $hash{$name};
+
+=back
+
+=head1 ANSWER
+
+4
+
+=head1 EXPLANATION
+
+ハッシュの要素を削除するには C<delete $hash{$name}> を使います。C<undef> を代入ないし適用しても C<$name> に対応する値がundefになるだけなので注意してください。
+
+=head1 AUTHOR
+
+Fuji Goro
+http://github.com/gfx
+
+=cut
