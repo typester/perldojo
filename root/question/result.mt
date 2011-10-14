@@ -15,7 +15,7 @@
 ?     'Perl道場の検定で20点。俺って、Perlエンジニアだよな？ #perldojo',
 ?     'Perl道場の検定で、な、な、なんと0点。気にすんな俺！まだまだ伸びシロがあるってことだ！ #perldojo',
 ? ];
-? $tweet_url->query_form( url => $c->req->uri, text => $tweet_text );
+? $tweet_url->query_form( url => $c->req->uri, text => $tweet_text->[ $rank + 1 ] );
 
 ? block content => sub {
 
