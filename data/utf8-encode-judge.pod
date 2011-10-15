@@ -39,7 +39,11 @@ C<$string>はUTF8フラグ付きの文字列である。この文字列をUTF8�
 
 =head1 EXPLANATION
 
-C<$string>に、UTF8フラグが付いていても、その文字列が UTF8でデコードされているかは、C<utf8::is_utf8>では、判断できません。
+貴本的に、
+
+ utf8::is_utf8 で何かしらの判断をするようなコードは書いてはいけません
+
+C<$string>に、UTF8フラグが付いていても、その文字列が UTF8でデコードされているかは、C<utf8::is_utf8>では、B<判断できません>。
 例えば、次のようなコードの場合(UTF8で書かれているとする):
 
  use Encode;
@@ -52,7 +56,7 @@ C<$string>に、UTF8フラグが付いていても、その文字列が UTF8で�
 
 latin1 でデコードされているため、UTF8フラグは付いている。ただし、latin1なので、Wide Character にはならず、print しても warning は出ない。
 UTF8でデコードされていないので、文字列の長さは 15 となる。
-この文字列をUTF8フラグがあるからといって、C<Encode::encode('utf8', $string);> を行うと、文字化けしてしまいます。
+文字列をUTF8フラグがあるからといって、C<Encode::encode('utf8', $string);> を行うと、文字化けしてしまいます。
 
 =head1 AUTHOR
 
