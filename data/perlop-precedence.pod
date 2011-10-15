@@ -46,6 +46,7 @@
 
 =head1 AUTHOR
 
+Takeshi Nakata
 https://github.com/nakatakeshi
 
 =cut
