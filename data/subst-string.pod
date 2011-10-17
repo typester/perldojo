@@ -1,0 +1,95 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+次のコードが標準出力へ出力するものとして、正しいものは以下のうちどれでしょうか。
+
+    sub subst_perl {
+        map s/(Perl)/$1Dojo/g, @_;
+    }
+
+    my @a = subst_perl("Perl Monger", "Perl.org", "Pearl");
+    print join ", ", @a;
+
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+「PerlDojo Monger, PerlDojo.org, Pearl」と表示される
+
+=item 2.
+
+「1, 1, 」と表示される
+
+=item 3.
+
+「, , 」と表示される
+
+=item 4.
+
+実行時エラーになる
+
+=back
+
+=head1 ANSWER
+
+4
+
+=head1 EXPLANATION
+
+4番が正解です。
+定数文字列を C<s///> などで変更しようとすると、「Modification of a read-only value attempted at - line 2.」と表示されエラーになります。
+このエラーは次のように定数文字列を C<@_> 経由で直接書き変えようとした時にも発生します。
+
+    sub subst_perl {
+        $_[0] = 1; # Modification of a read-only value attempted
+    }
+    subst_perl("Perl Monger", "Perl.org", "Pearl");
+
+以下、誤った選択肢について解説します。
+
+=over
+
+=item 1
+
+「PerlDojo Monger, PerlDojo.org, Pearl」と表示される
+
+もし C<subst_perl()> が以下のようであれば1番が正解でした。
+
+    sub subst_perl {
+        map { my $s = $_; $s =~ s/(Perl)/$1Dojo/g; $s } @_;
+    }
+
+Perl 5.13.2以上だと C</r> 修飾子が使えるので以下のように書けます。
+
+    sub subst_perl {
+        map s/(Perl)/$1Dojo/gr, @_;
+    }
+
+=item 2
+
+「1, 1, 」と表示される
+
+もし C<subst_perl()> が以下のようであれば2番が正解でした。
+C<s///> はマッチした回数を返すので、 C<$s> を返す必要があります。
+
+    sub subst_perl {
+        map { my $s = $_; $s =~ s/(Perl)/$1Dojo/g } @_;
+    }
+
+=item 3
+
+全くの嘘です。すみません。
+
+=back
+
+=head1 AUTHOR
+
+Takuya Fujiwara
+http://github.com/tyru
+
+=cut
