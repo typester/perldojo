@@ -70,7 +70,7 @@
         new TWTR.Widget({
           version: 2,
           type: 'search',
-          search: 'perl',
+          search: 'http://perldojo.org/ OR #perldojo',
           interval: 30000,
           title: 'perl_dojo',
           subject: 'Perl道場',
