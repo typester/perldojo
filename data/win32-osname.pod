@@ -1,0 +1,48 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+グローバル変数 $^O から OS の名前を取得することができます。
+
+windows ではどんな値が設定されているでしょうか？
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+    Windows
+
+=item 2.
+
+    Win32
+
+=item 3.
+
+    MSWin32
+
+=item 4.
+
+    Bill Gates
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+選択肢に cygwin がないので、3番の MSWin32 が正解です。モジュールを Windows 対応するときに必ず書くことになる文字なので、しっかり覚えておきましょう。
+ちなみに、Mac では C<< darwin >>、Linux では C<< linux >> などが入っています。
+
+また、C<< use Config >> すれば、C<< $Config{'osname'} >> からも取得できますが、使う機会は少ないでしょう。
+
+=head1 AUTHOR
+
+xaicron
+http://github.com/xaicron
+
+=cut
