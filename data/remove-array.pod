@@ -5,7 +5,7 @@
 
     my @people = ('Larry', 'Tatsuhiko');
     $people[0] = undef;
-    delete $people[1];
+    undef $people[1];
 
 このコードが実行されたあとの、配列 C<@people> はどのようになっているか、正しいものを選べ。
 
@@ -37,7 +37,7 @@
 
 =head1 EXPLANATION
 
-undef を代入したり、C<delete> 関数を使用しても配列の要素は undef にはなりますがなくなりません。
+undef を代入したり、C<undef> 関数を使用しても配列の要素は undef にはなりますがなくなりません。
 
 配列を空にするには
 
@@ -45,7 +45,11 @@ undef を代入したり、C<delete> 関数を使用しても配列の要素は 
 
 というように空のリストを代入するのが正しい方法です。
 
-また、配列に対する C<delete> は最近の Perl では deprecated であり推奨されませんし、将来のバージョンでは使えなくなる可能性もありますので、使用を控えた方がいいでしょう。
+また、
+
+    delete @array;
+
+という配列に対する C<delete> は昔は C<undef> と同じように動作しましたが、最近の Perl では一応動くものの deprecated 扱いであり推奨されませんし、将来のバージョンでは使えなくなる可能性もありますので、使用を控えた方がいいでしょう。
 
 =head1 AUTHOR
 
