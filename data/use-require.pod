@@ -20,6 +20,10 @@ useはオールナイトでモジュールを読み込み、requireはパイル�
 
 useはコンパイル時にモジュールを読み込み、requireはランタイムで読み込む
 
+=item 4.
+
+useとrequireに違いはない
+
 =back
 
 =head1 ANSWER

@@ -1,0 +1,45 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+以下のスクリプトで、@arrayの内容はどのようになるでしょう。
+
+    my @array = ("100") x 3;
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+シンタックスエラー
+
+=item 2.
+
+('100100100')
+
+=item 3.
+
+(100, 100, 100)
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+C<x> 演算子は文字列の繰り返し演算子ですが、リストに対して使われた場合、リストを繰り返します。
+
+    ("Hello", "World") x 3 # => ("Hello", "World", "Hello", "World", "Hello", "World")
+
+したがって、C<(100)> が3度繰り返された C<(100, 100, 100)> が正解です。
+
+=head1 AUTHOR
+
+Kato Atsushi
+http://github.com/ktat
+
+=cut

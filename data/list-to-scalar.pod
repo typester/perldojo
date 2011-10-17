@@ -1,0 +1,43 @@
+=encoding utf-8
+
+=head1 QUESTION
+
+C<$item = ('a', 'b', 'c')> を実行すると、$item には以下のどの値が入るでしょう。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+ 3
+
+=item 2.
+
+ 'a'
+
+=item 3.
+
+ 'b'
+
+=item 4.
+
+ 'c'
+
+=back
+
+=head1 ANSWER
+
+4
+
+=head1 EXPLANATION
+
+4番が正解です。リストをスカラコンテキストで受けた場合、最後の値が戻ります。
+
+
+=head1 AUTHOR
+
+Kato Atsushi
+http://github.com/ktat
+
+=cut
