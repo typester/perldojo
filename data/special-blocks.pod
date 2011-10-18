@@ -1,0 +1,95 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+  #!/usr/bin/env perl
+  use strict;
+  use v5.10;
+  say 'main1';
+  eval(<<__CODE__);
+  BEGIN {
+      say "BEGIN";
+  }
+  UNITCHECK {
+      say "UNITCHECK";
+  }
+  CHECK {
+      say "CHECK";
+  }
+  INIT {
+      say "INIT";
+  }
+  END {
+      say "END";
+  }
+  __CODE__
+  say 'main2';
+
+上記のコードを実行した場合に表示される順番として正しいものは以下のうちどれでしょう。
+
+=head1 CHOISE
+
+=over
+
+=item 1
+
+  BEGIN
+  UNITCHECK
+  CHECK
+  INIT
+  main1
+  main2
+  END
+
+=item 2
+
+  main1
+  BEGIN
+  UNITCHECK
+  CHECK
+  INIT
+  END
+  main2
+
+=item 3
+
+  main1
+  BEGIN
+  UNITCHECK
+  main2
+  END
+
+=item 4
+
+  main1
+  BEGIN
+  UNITCHECK
+  CHECK
+  main2
+
+=item 5
+
+  main1
+  BEGIN
+  UNITCHECK
+  main2
+
+=back
+
+=head1 ANSWER
+
+3
+
+=head1 EXPLANATION
+
+3番が正解です。evalの中で定義された特殊ブロックは C<BEGIN>、C<UNITCHECK>、C<END>のみが実行されます。また、C<END>ブロックはC<eval()>の最後ではなく、evalの外で定義されたC<END>ブロックと同様に、インタプリタが終了する直前にLIFOで実行されます。
+
+なお、この挙動に関してはC<perldoc perlmod>に記載されています。
+
+=head1 AUTHOR
+
+Hideaki Ohno 
+https://github.com/hideo55
+
+=cut
