@@ -1,0 +1,79 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+配列からユニークな値を取得するuniq関数の実装として適切なものを選択して下さい。
+
+    #!/usr/bin/env perl
+    use strict;
+    use warnings;
+    use Test::More;
+
+    my $result = [ uniq('hoge','fuga','fuga','piyo') ];
+    is_deeply( $result, ['hoge', 'fuga', 'piyo']);
+    done_testing;
+
+    sub uniq { ... }
+
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+    sub uniq {
+        my %seen = ();
+        return map { not ++$seen{$_} } @_;
+    }
+
+=item 2.
+
+    sub uniq {
+        my %seen = ();
+        return map { not $seen{$_}++ } @_;
+    }
+
+=item 3.
+
+    sub uniq {
+        my %seen = ();
+        return grep { not ++$seen{$_} } @_;
+    }
+
+=item 4.
+
+    sub uniq {
+        my %seen = ();
+        return grep { not $seen{$_}++ } @_;
+    }
+
+=back
+
+=head1 ANSWER
+
+4
+
+=head1 EXPLANATION
+
+これはcpanモジュールでもあるL<List::MoreUtils>のuniq関数そのものです。
+
+条件に一致したものをリストとして返すにはmapとgrepのどちらが適切かを考えると選択肢は3,4に絞られます。
+
+あとはインクリメント演算子の位置によってgrepの結果が異なる事が分かれば解答できると思います。
+
+詳細は以下を参照下さい。
+
+L<http://perldoc.jp/func/map>
+
+L<http://perldoc.jp/func/grep>
+
+L<http://perldoc.jp/docs/perl/5.14.1/perlop.pod>
+
+=head1 AUTHOR
+
+okamuuu
+http://github.com/okamuuu
+
+=cut
