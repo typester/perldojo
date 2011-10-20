@@ -19,7 +19,7 @@ Steve Jobs
 
 =item 3.
 
-Larray Wall
+Larry Wall
 
 =item 4.
 
