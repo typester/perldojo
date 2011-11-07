@@ -1,0 +1,49 @@
+
+=encoding utf-8
+
+=head1 QUESTION
+
+Perlで使用する用語において、２つの用語の組み合わせが同意であるものを選べ。
+
+=head1 CHOICES
+
+=over
+
+=item 1.
+
+配列とハッシュ
+
+=item 2.
+
+連想配列とハッシュ
+
+=item 3.
+
+配列とリスト
+
+=item 4.
+
+連想配列とリスト
+
+=back
+
+=head1 ANSWER
+
+2
+
+=head1 EXPLANATION
+
+配列(array)とリスト(list)は、Perlにおいては精密に意味を持った用語である。
+配列とはデータ構造であり、リストとはスタック上に置かれる一連の値で、リストが配列変数に代入されれば配列になる。
+
+配列からpopして値を取り出すことはできるが、リストからpopして値を取り出すことはできない。
+
+連想配列とハッシュの関係は、連想配列とはPerl5以前に使用されていた用語であり、
+PerlエンジニアはLazyなので、より簡明なハッシュという呼び方に変更された。
+
+=head1 AUTHOR
+
+Yusuke Toda
+http://github.com/toda
+
+=cut
