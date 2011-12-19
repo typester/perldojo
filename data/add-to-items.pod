@@ -48,7 +48,7 @@
 
     sub add_to_items {
         my($value, $array_ref) = @_;
-       
+
         my @new_items;
         foreach my $item(@{$array_ref}) {
             push @new_items, $item + $value;
@@ -118,7 +118,7 @@
 
     sub add_to_items {
         my($value, $array_ref) = @_;
-       
+
         my @new_items;
         foreach my $item(@{$array_ref}) {
             push @new_items, $item + $value;

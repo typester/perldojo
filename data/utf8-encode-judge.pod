@@ -65,7 +65,7 @@ UTF8でデコードされていないので、文字列の長さは 15 となる
 
 =head1 AUTHOR
 
-Kato Atsushi 
+Kato Atsushi
 http://github.com/ktat
 
 =cut
