@@ -5,7 +5,7 @@
 次のコードの出力は？
 
     use utf8;
-    
+
     my $hello = 'こんにちは';
     print length($hello);
 

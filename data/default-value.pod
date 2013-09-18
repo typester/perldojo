@@ -10,10 +10,10 @@
 
     sub new {
         my ($class, %options) = @_;
-    
+
         # 値がなかったらデフォルト値でうめる
         # ...
-    
+
         return bless \%options, $class;
     }
 

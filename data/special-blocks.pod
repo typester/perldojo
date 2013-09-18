@@ -89,7 +89,7 @@
 
 =head1 AUTHOR
 
-Hideaki Ohno 
+Hideaki Ohno
 https://github.com/hideo55
 
 =cut
